@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	ft_have_dup(int *nums, int tam)
+void	ft_have_dup(int *stack_a, int tam)
 {
 	int	i;
 	int j;
@@ -10,12 +10,12 @@ void	ft_have_dup(int *nums, int tam)
 	{
 		j = i;
 		while (++j < tam)
-			if (nums[i] == nums[j])
+			if (stack_a[i] == stack_a[j])
 				ft_error("Error, numeros duplicados.\n");
 	}
 }
 
-void	ft_putstack(int *nums, int tam)
+void	ft_putstack(int *stack_a, int tam)
 {
 	int	i;
 
@@ -25,8 +25,9 @@ void	ft_putstack(int *nums, int tam)
 	while(i < tam)
 	{
 		ft_putstr_fd("||\t", 1);
-		ft_putnbr_fd(nums[i++], 1);
+		ft_putnbr_fd(stack_a[i], 1);
 		ft_putstr_fd("\t\t||\n", 1);
+		i++;
 	}
 	ft_putstr_fd("||_ _ _ _ _ _ _ _ _ _ _ ||\n\n", 1);
 }

@@ -12,7 +12,7 @@
 
 NAME = push_swap
 COMPILER = gcc
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra 
 SOURCES = *.c
 LIBFT = libft/libft.a
 OBJECTS = *.o
