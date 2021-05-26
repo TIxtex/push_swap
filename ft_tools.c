@@ -18,10 +18,16 @@ void	ft_have_dup(int *stack_a, int tam)
 void	ft_putstack(int *stack_a, int tam)
 {
 	int	i;
+	char a;
 
+	a = 'A';
+	if (tam <= 2)
+		a = 'B';
 	i = 0;
-	ft_putstr_fd("\n||Stack A\n", 1);
-	ft_putstr_fd("||_ _ _ _ _ _ _ _ _ _ _ ||\n", 1);
+	ft_putstr_fd("\n||Stack -> ", 1);
+	ft_putstr_fd(&a, 1);
+
+	ft_putstr_fd("\n||_ _ _ _ _ _ _ _ _ _ _ ||\n", 1);
 	while(i < tam)
 	{
 		ft_putstr_fd("||\t", 1);
