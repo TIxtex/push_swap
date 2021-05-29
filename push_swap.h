@@ -32,6 +32,7 @@ void			ft_m_rra(t_stack *stack_a);
 void			ft_m_rrb(t_stack *stack_b);
 void			ft_m_pa(t_stack *stack_a, t_stack *stack_b);
 void			ft_m_pb(t_stack *stack_a, t_stack *stack_b);
+void			ft_up(t_stack *stack, int num);
 // FT_ORDER_100
 void			ft_order_100(t_stack *stack_a);
 

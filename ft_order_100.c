@@ -1,37 +1,27 @@
 #include "push_swap.h"
 
-static int		ft_find_2(t_stack *stack, t_fragment fragment)
+static int		ft_find_2(t_stack *stack, t_fragment *fragment)
 {
 	int			i;
 
 	i = stack->tam;
 	while (--i >= 0)
-		if (stack->stack[i] < fragment.min + (fragment.tam * (fragment.phase + 1)) 
-		&& fragment.min + (fragment.tam * fragment.phase) < stack->stack[i])
+		if (stack->stack[i] < fragment->min + (fragment->tam * (fragment->phase + 1)) 
+		&& fragment->min + (fragment->tam * fragment->phase) < stack->stack[i])
 			return (i);
-	return (0);
+	return (-1);
 }	
 
-static int		ft_find_1(t_stack *stack, t_fragment fragment)
+static int		ft_find_1(t_stack *stack, t_fragment *fragment)
 {
 	int			i;
 
 	i = -1;
 	while (++i < stack->tam)
-		if (stack->stack[i] <= fragment.min + (fragment.tam * (fragment.phase + 1)) 
-		&& fragment.min + (fragment.tam * fragment.phase) <= stack->stack[i])
+		if (stack->stack[i] <= fragment->min + (fragment->tam * (fragment->phase + 1)) 
+		&& fragment->min + (fragment->tam * fragment->phase) <= stack->stack[i])
 			return (i);
-	return (0);
-}
-
-static void		ft_up(t_stack *stack, int num)
-{
-	if (num > stack->tam / 2)
-		while (num++ < stack->tam)
-			ft_m_rra(stack);
-	else
-		while (num-- > 0)
-			ft_m_ra(stack);
+	return (-1);
 }
 
 static void		ft_i_b_2(t_stack *stack_a, t_stack *stack_b)
@@ -78,41 +68,54 @@ static void		ft_i_b(t_stack *stack_a, t_stack *stack_b)
 		ft_i_b_2(stack_a, stack_b);
 }
 
-static void		ft_1_step(t_stack *stack_a, t_stack *stack_b)
+static void		ft_2_step(t_stack *stack_a, t_stack *stack_b, t_fragment *f)
 {
-	t_fragment	fragment;
 	int			i;
 	int			j;
+	int			flag;
 
-	i = -1;
-	fragment.min = INT_MAX;
-	fragment.max = INT_MIN;
-	while (++i < stack_a->tam)
+	flag = (stack_a->tam > 100) ? 11 : 5 ;
+
+	while (f->phase < flag && stack_a->tam != 0)
 	{
-		if (stack_a->stack[i] < fragment.min)
-			fragment.min = stack_a->stack[i];
-		if (stack_a->stack[i] > fragment.max)
-			fragment.max = stack_a->stack[i];
-	}
-	fragment.tam = ((fragment.max - fragment.min) / 5) + 1;//tam++ for fit
-	while (fragment.phase < 5)
-	{
-		i = ft_find_1(stack_a, fragment);
-		j = ft_find_2(stack_a, fragment);
-		while (i || j)
+		i = ft_find_1(stack_a, f);
+		j = ft_find_2(stack_a, f);
+		while ((-1 != i && -1 != j) && stack_a->tam != 0)
 		{
-			i = ft_find_1(stack_a, fragment);
-			j = ft_find_2(stack_a, fragment);
-			if (i > (stack_a->tam - j) || 0 == i)
+			i = ft_find_1(stack_a, f);
+			j = ft_find_2(stack_a, f);
+			if (i > (stack_a->tam - j))
 				ft_up(stack_a, j);
 			else
 				ft_up(stack_a, i);
 			ft_i_b(stack_a, stack_b);
+			ft_putstack(stack_b, 'B');
 		}
-		fragment.phase += 1;
+		f->phase += 1;
 	}
+}
+
+static void		ft_1_step(t_stack *stack_a, t_stack *stack_b)
+{
+	t_fragment	*fragment;
+	int			i;
+
+	fragment = (t_fragment *)ft_calloc(1, sizeof(t_fragment));
+	i = -1;
+	fragment->min = INT_MAX;
+	fragment->max = INT_MIN;
+	while (++i < stack_a->tam)
+	{
+		if (stack_a->stack[i] < fragment->min)
+			fragment->min = stack_a->stack[i];
+		if (stack_a->stack[i] > fragment->max)
+			fragment->max = stack_a->stack[i];
+	}
+	fragment->tam = ((fragment->max - fragment->min) / 5) + 1;
+	ft_2_step(stack_a, stack_b, fragment);
 	while (stack_b->tam != 0)
 		ft_m_pa(stack_a, stack_b);
+	free(fragment);
 }
 
 void			ft_order_100(t_stack *stack_a)

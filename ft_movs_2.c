@@ -25,3 +25,13 @@ void	ft_m_rrb(t_stack *stack_b)
 	stack_b->stack[0] = aux;
 	ft_putstr_fd("rrb\n", 1);
 }
+
+void		ft_up(t_stack *stack, int num)
+{
+	if (num > stack->tam / 2)
+		while (num++ < stack->tam)
+			ft_m_rra(stack);
+	else
+		while (num-- > 0)
+			ft_m_ra(stack);
+}
