@@ -1,39 +1,34 @@
 #include "push_swap.h"
 
-void	ft_have_dup(int *stack_a, int tam)
+void	ft_have_dup(t_stack *stack)
 {
 	int	i;
 	int j;
 
 	i = -1;
-	while (++i < tam)
+	while (++i < stack->tam)
 	{
 		j = i;
-		while (++j < tam)
-			if (stack_a[i] == stack_a[j])
+		while (++j < stack->tam)
+			if (stack->stack[i] == stack->stack[j])
 				ft_error("Error, numeros duplicados.\n");
 	}
 }
 
-void	ft_putstack(int *stack_a, int tam)
+void		ft_putstack(t_stack *stack, char s)
 {
-	int	i;
-	char a;
+	int		i;
 
-	a = 'A';
-	if (tam <= 2)
-		a = 'B';
-	i = 0;
+	i = -1;
 	ft_putstr_fd("\n||Stack -> ", 1);
-	ft_putstr_fd(&a, 1);
+	ft_putchar_fd(s, 1);
 
 	ft_putstr_fd("\n||_ _ _ _ _ _ _ _ _ _ _ ||\n", 1);
-	while(i < tam)
+	while(++i < stack->tam)
 	{
 		ft_putstr_fd("||\t", 1);
-		ft_putnbr_fd(stack_a[i], 1);
+		ft_putnbr_fd(stack->stack[i], 1);
 		ft_putstr_fd("\t\t||\n", 1);
-		i++;
 	}
 	ft_putstr_fd("||_ _ _ _ _ _ _ _ _ _ _ ||\n\n", 1);
 }
