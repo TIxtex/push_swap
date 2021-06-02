@@ -1,44 +1,29 @@
 #include "push_swap.h"
 
-
-
-static void	ft_incrust_a_i_b_r(t_stack *stack_a, t_stack *stack_b)
+static int	ft_find_2(t_stack *stack, t_fragment *fragment)
 {
 	int	i;
-	int	j;
 
-	i = 0;
-	j = i;
-	while (stack_b->tam > i && stack_a->stack[0] < stack_b->stack[i])
-		i++;
-	while (stack_b->tam > j && stack_a->stack[0] > stack_b->stack[(stack_b->tam - 1) - j])
-		j++;
-	if (stack_b->tam == 0 || stack_a->stack[0] > stack_b->stack[0])
-		ft_m_pb(stack_a, stack_b);
-	else if (i <= j + 1)
-	{
-		j = i;
-		while (i > 1)
-		{
-			ft_m_rb(stack_b);
-			i--;
-		}
-		ft_m_pb(stack_a, stack_b);
-		if (1 == i)
-			ft_m_sb(stack_b);
-		while (j-- > 1)
-			ft_m_rrb(stack_b);
-	}
-	else
-	{
-		i = j;
-		while (--j >= 0)
-			ft_m_rrb(stack_b);
-		ft_m_pb(stack_a, stack_b);
-		ft_m_rb(stack_b);
-		while (i-- > 0)
-			ft_m_rb(stack_b);
-	}
+	i = stack->tam;
+	while (--i >= 0)
+		if (stack->stack[i] < fragment->min + (fragment->tam
+				* (fragment->phase + 1)) && fragment->min
+			+ (fragment->tam * fragment->phase) < stack->stack[i])
+			return (i);
+	return (-1);
+}	
+
+static int	ft_find_1(t_stack *stack, t_fragment *fragment)
+{
+	int	i;
+
+	i = -1;
+	while (++i < stack->tam)
+		if (stack->stack[i] <= fragment->min + (fragment->tam
+				* (fragment->phase + 1)) && fragment->min + (fragment->tam
+				* fragment->phase) <= stack->stack[i])
+			return (i);
+	return (-1);
 }
 
 static void	ft_2_step(t_stack *stack_a, t_stack *stack_b, t_fragment *f)
@@ -55,7 +40,7 @@ static void	ft_2_step(t_stack *stack_a, t_stack *stack_b, t_fragment *f)
 	{
 		i = ft_find_1(stack_a, f);
 		j = ft_find_2(stack_a, f);
-		while ((-1 != i && (-1) != j) && stack_a->tam != 0)
+		while (((-1) != i && (-1) != j) && stack_a->tam != 0)
 		{
 			i = ft_find_1(stack_a, f);
 			j = ft_find_2(stack_a, f);
