@@ -12,8 +12,8 @@ void	ft_m_sa(t_stack *stack_a)
 
 void	ft_m_ra(t_stack *stack_a)
 {
-	int	i;
 	int	aux;
+	int	i;
 
 	aux = stack_a->stack[0];
 	i = -1;
@@ -25,12 +25,12 @@ void	ft_m_ra(t_stack *stack_a)
 
 void	ft_m_rra(t_stack *stack_a)
 {
-	int	i;
 	int	aux;
+	int	i;
 
 	aux = stack_a->stack[stack_a->tam - 1];
 	i = stack_a->tam - 1;
-	while(--i >= 0)
+	while (--i >= 0)
 		stack_a->stack[i + 1] = stack_a->stack[i];
 	stack_a->stack[0] = aux;
 	ft_putstr_fd("rra\n", 1);
@@ -57,7 +57,7 @@ void	ft_m_pb(t_stack *stack_a, t_stack *stack_b)
 	int	i;
 
 	i = stack_b->tam;
-	while (--i >=0)
+	while (--i >= 0)
 		stack_b->stack[i + 1] = stack_b->stack[i];
 	stack_b->stack[0] = stack_a->stack[0];
 	i = -1;
