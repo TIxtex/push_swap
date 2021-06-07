@@ -30,7 +30,7 @@ static void	ft_incrust_button(t_stack *stack_a, t_stack *stack_b, int num)
 		ft_m_rb(stack_b);
 }
 
-static void	ft_incrust_top_r(t_stack *stack_a, t_stack *stack_b, int num)
+void	ft_incrust_top_r(t_stack *stack_a, t_stack *stack_b, int num)
 {
 	int	j;
 
@@ -47,7 +47,7 @@ static void	ft_incrust_top_r(t_stack *stack_a, t_stack *stack_b, int num)
 		ft_m_rra(stack_a);
 }
 
-static void	ft_incrust_button_r(t_stack *stack_a, t_stack *stack_b, int num)
+void	ft_incrust_button_r(t_stack *stack_a, t_stack *stack_b, int num)
 {
 	int	i;
 
@@ -80,20 +80,3 @@ void	ft_incrust_a_i_b_r(t_stack *stack_a, t_stack *stack_b)
 		ft_incrust_button(stack_a, stack_b, j);
 }
 
-void	ft_incrust_b_i_a(t_stack *stack_a, t_stack *stack_b)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (stack_a->tam > i && stack_b->stack[0] > stack_a->stack[i])
-		i++;
-	while (stack_a->tam > j
-		&& stack_b->stack[0] < stack_a->stack[(stack_a->tam - 1) - j])
-		j++;
-	if (i <= j + 1)
-		ft_incrust_top_r(stack_a, stack_b, i);
-	else
-		ft_incrust_button_r(stack_a, stack_b, j);
-}

@@ -6,9 +6,9 @@ static int	ft_find_2(t_stack *stack, t_fragment *fragment)
 
 	i = stack->tam;
 	while (--i >= 0)
-		if (stack->stack[i] < fragment->min + (fragment->tam
+		if (stack->stack[i] <= fragment->min + (fragment->tam
 				* (fragment->phase + 1)) && fragment->min
-			+ (fragment->tam * fragment->phase) < stack->stack[i])
+			+ (fragment->tam * fragment->phase) <= stack->stack[i])
 			return (i);
 	return (-1);
 }	
@@ -40,16 +40,17 @@ static void	ft_2_step(t_stack *stack_a, t_stack *stack_b, t_fragment *f)
 	{
 		i = ft_find_1(stack_a, f);
 		j = ft_find_2(stack_a, f);
-		while (((-1) != i && (-1) != j) && stack_a->tam != 0)
+		while (((-1) != i || (-1) != j) && stack_a->tam != 0)
 		{
-			i = ft_find_1(stack_a, f);
-			j = ft_find_2(stack_a, f);
 			if (i > (stack_a->tam - j))
 				ft_up(stack_a, j);
 			else
 				ft_up(stack_a, i);
 			ft_incrust_a_i_b_r(stack_a, stack_b);
-			ft_putstack(stack_b, 'B');
+			ft_putstack(stack_a, 'a');
+			ft_putstack(stack_b, 'b');
+			i = ft_find_1(stack_a, f);
+			j = ft_find_2(stack_a, f);
 		}
 		f->phase += 1;
 	}

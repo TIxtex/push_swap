@@ -1,5 +1,5 @@
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#ifndef CHECKER_H
+# define CHECKER_H
 # include "../push_swap.h"
 
 

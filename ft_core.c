@@ -1,5 +1,23 @@
 #include "push_swap.h"
 
+static void	ft_incrust_b_i_a(t_stack *stack_a, t_stack *stack_b)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (stack_a->tam > i && stack_b->stack[0] > stack_a->stack[i])
+		i++;
+	while (stack_a->tam > j
+		&& stack_b->stack[0] < stack_a->stack[(stack_a->tam - 1) - j])
+		j++;
+	if (i <= j + 1)
+		ft_incrust_top_r(stack_a, stack_b, i);
+	else
+		ft_incrust_button_r(stack_a, stack_b, j);
+}
+
 static void	ft_order_3(t_stack *stack)
 {
 	if (stack->stack[1] > stack->stack[2])
@@ -47,5 +65,5 @@ void	ft_core(t_stack *stack_a)
 		ft_order_5(stack_a);
 	else if (5 < stack_a->tam)
 		ft_order_100(stack_a);
-	ft_putstack(stack_a, 'a');//debug
+//	ft_putstack(stack_a, 'a');//debug
 }
