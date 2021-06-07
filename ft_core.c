@@ -47,4 +47,5 @@ void	ft_core(t_stack *stack_a)
 		ft_order_5(stack_a);
 	else if (5 < stack_a->tam)
 		ft_order_100(stack_a);
+	ft_putstack(stack_a, 'a');//debug
 }

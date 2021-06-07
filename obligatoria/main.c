@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "../push_swap.h"
 
 static t_stack	*ft_check_arg(int argc, char **argv)
 {

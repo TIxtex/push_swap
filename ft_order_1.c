@@ -5,7 +5,7 @@ static void	ft_incrust_top(t_stack *stack_a, t_stack *stack_b, int num)
 	int	j;
 
 	j = num;
-	while (num > 0)
+	while (num > 1)
 	{
 		ft_m_rb(stack_b);
 		num--;

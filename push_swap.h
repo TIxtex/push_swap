@@ -2,7 +2,6 @@
 # define PUSH_SWAP_H
 # include "./libft/libft.h"
 # include <limits.h>
-# include <stdio.h>//**//
 
 typedef struct s_fragment
 {
@@ -17,6 +16,14 @@ typedef struct s_stack
 	int			tam;
 	int			*stack;
 }				t_stack;
+/*
+typedef struct s_sol
+{
+	int			tam;
+	char		*start;
+	char		*end;
+}				t_sol;
+*/
 
 void			ft_have_dup(t_stack *stack);
 void			ft_putstack(t_stack *stack, char s);//
@@ -32,10 +39,13 @@ void			ft_incrust_b_i_a(t_stack *stack_a, t_stack *stack_b);
 // FT_MOVS.C
 void			ft_m_sa(t_stack *stack_a);
 void			ft_m_sb(t_stack *stack_b);
+void			ft_m_ss(t_stack *stack_a, t_stack *stack_b);
 void			ft_m_ra(t_stack *stack_a);
 void			ft_m_rb(t_stack *stack_b);
+void			ft_m_rr(t_stack *stack_a, t_stack *stack_b);
 void			ft_m_rra(t_stack *stack_a);
 void			ft_m_rrb(t_stack *stack_b);
+void			ft_m_rrr(t_stack *stack_a, t_stack *stack_b);
 void			ft_m_pa(t_stack *stack_a, t_stack *stack_b);
 void			ft_m_pb(t_stack *stack_a, t_stack *stack_b);
 void			ft_up(t_stack *stack, int num);
