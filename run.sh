@@ -1,2 +1,15 @@
 #!/bin/bash
-./push_swap -1 -2 -22 -44 -3 -4 0 1 -23 -5 -6 -7 -8 -24 -9 -11 -10 -16 -27 14 48 -88 87 99 42 43 70 98
+
+./push_swap 0 1 2 3
+./push_swap 1 0 2 3
+./push_swap 1 2 0 3
+./push_swap 0 2 1 3
+./push_swap 2 0 1 3
+./push_swap 2 1 0 3
+
+./push_swap 3 0 1 2
+./push_swap 3 1 0 2
+./push_swap 3 1 2 0
+./push_swap 3 0 2 1
+./push_swap 3 2 0 1
+./push_swap 3 2 1 0
