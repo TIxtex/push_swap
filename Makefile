@@ -40,4 +40,4 @@ fclean: clean
 f: fclean
 re: fclean all
 mchek: $(SOURCES2)
-	$(COMPILER) $(FLAGS) $(SOURCES) $(SOURCES2) $(LIBFT) -o $(NAME2)
+	$(COMPILER) $(FLAGS) $(SOURCES2) $(SOURCES)  $(LIBFT) -o $(NAME2)

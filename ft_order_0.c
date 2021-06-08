@@ -26,7 +26,8 @@ static int	ft_find_1(t_stack *stack, t_fragment *fragment)
 	return (-1);
 }
 
-static void	ft_2_step(t_stack *stack_a, t_stack *stack_b, t_fragment *f)
+static void	ft_2_step(t_sol *solution, t_stack *stack_a, t_stack *stack_b,
+			t_fragment *f)
 {
 	int			i;
 	int			j;
@@ -43,12 +44,10 @@ static void	ft_2_step(t_stack *stack_a, t_stack *stack_b, t_fragment *f)
 		while (((-1) != i || (-1) != j) && stack_a->tam != 0)
 		{
 			if (i > (stack_a->tam - j))
-				ft_up(stack_a, j);
+				ft_up(solution, stack_a, j);
 			else
-				ft_up(stack_a, i);
-			ft_incrust_a_i_b_r(stack_a, stack_b);
-			ft_putstack(stack_a, 'a');
-			ft_putstack(stack_b, 'b');
+				ft_up(solution, stack_a, i);
+			ft_incrust_a_i_b_r(solution, stack_a, stack_b);
 			i = ft_find_1(stack_a, f);
 			j = ft_find_2(stack_a, f);
 		}
@@ -56,7 +55,7 @@ static void	ft_2_step(t_stack *stack_a, t_stack *stack_b, t_fragment *f)
 	}
 }
 
-static void	ft_1_step(t_stack *stack_a, t_stack *stack_b)
+static void	ft_1_step(t_sol *solution, t_stack *stack_a, t_stack *stack_b)
 {
 	t_fragment	*fragment;
 	int			i;
@@ -75,18 +74,18 @@ static void	ft_1_step(t_stack *stack_a, t_stack *stack_b)
 			fragment->max = stack_a->stack[i];
 	}
 	fragment->tam = ((fragment->max - fragment->min) / 5) + 1;
-	ft_2_step(stack_a, stack_b, fragment);
+	ft_2_step(solution, stack_a, stack_b, fragment);
 	while (stack_b->tam != 0)
-		ft_m_pa(stack_a, stack_b);
+		ft_m_pa(solution, stack_a, stack_b);
 	free(fragment);
 }
 
-void	ft_order_100(t_stack *stack_a)
+void	ft_order_100(t_sol *solution, t_stack *stack_a)
 {
 	t_stack	*stack_b;
 
 	stack_b = ft_reserve_stack(stack_a->tam);
-	ft_1_step(stack_a, stack_b);
+	ft_1_step(solution, stack_a, stack_b);
 	free(stack_b->stack);
 	free(stack_b);
 }
