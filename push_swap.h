@@ -54,6 +54,8 @@ void	ft_up(t_sol *solution, t_stack *stack, int num);
 t_sol	*ft_solnew(void);
 void	ft_soladd(t_sol *solution, char *add);
 void	ft_optimice_sol(t_sol *solution);
+void	ft_optimice_sol_7(t_sol *solution);
+void	ft_optimice_sol_6(t_sol *solution);
 void	ft_optimice_sol_5(t_sol *solution);
 void	ft_optimice_sol_4(t_sol *solution);
 void	ft_optimice_sol_3(t_sol *solution);

@@ -32,4 +32,6 @@ void	ft_optimice_sol(t_sol *solution)
 	ft_optimice_sol_3(solution);
 	ft_optimice_sol_4(solution);
 	ft_optimice_sol_5(solution);
+	ft_optimice_sol_6(solution);
+	ft_optimice_sol_7(solution);
 }

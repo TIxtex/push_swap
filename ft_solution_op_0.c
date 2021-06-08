@@ -89,21 +89,3 @@ void	ft_optimice_sol_4(t_sol *solution)
 		ft_optimice_sol_4(solution);
 	}
 }
-
-void	ft_optimice_sol_5(t_sol *solution)
-{
-	char	*i;
-	char	*aux;
-
-	i = ft_strnstr(solution->start, "rrb\nrra", solution->tam);
-	if (NULL != i)
-	{
-		i[2] = 'r';
-		i[3] = '\0';
-		aux = ft_strjoin(solution->start, &i[7]);
-		solution->tam -= 3;
-		free(solution->start);
-		solution->start = aux;
-		ft_optimice_sol_5(solution);
-	}
-}

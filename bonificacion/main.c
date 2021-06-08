@@ -18,38 +18,28 @@ static void	ft_isordered2(t_stack *stack, t_stack *stack_b)
 
 static void 	ft_make_move(char *move, t_stack *stack_a, t_stack *stack_b)
 {
-	if (move[0] == 's')
-	{
-		if (move[1] == 'a')
-			ft_mc_s(stack_a);
-		else if (move[1] == 'b')
-			ft_mc_s(stack_b);
-		else if (move[1] == 's')
-			ft_mc_ss(stack_a, stack_b);
-	}
-	else if (move[0] == 'p')
-	{
-		if (move[1] == 'a')
-			ft_mc_pa(stack_a, stack_b);
-		else if (move[1] == 'b')
-			ft_mc_pb(stack_a, stack_b);
-	}
-	else if (move[0] == 'r')
-	{
-		if (move[1] == 'r')
-		{
-			if (move[2] == 'a')
-				ft_mc_rr(stack_a);
-			else if (move[2] == 'b')
-				ft_mc_rr(stack_b);
-			else if (move[2] == 'r')
-				ft_mc_rrr(stack_a, stack_b);
-		}
-		else if (move[1] == 'a')
-			ft_mc_r(stack_a);
-		else if (move[1] == 'b')
-			ft_mc_r(stack_b);
-	}
+	if (ft_strncmp(move, "sa", 2) == 0)
+		ft_mc_s(stack_a);
+	else if (ft_strncmp(move, "sb", 2) == 0)
+		ft_mc_s(stack_b);
+	else if (ft_strncmp(move, "ss", 2) == 0)
+		ft_mc_ss(stack_a, stack_b);
+	else if (ft_strncmp(move, "pa", 2) == 0)
+		ft_mc_pa(stack_a, stack_b);
+	else if (ft_strncmp(move, "pb", 2) == 0)
+		ft_mc_pb(stack_a, stack_b);
+	else if (ft_strncmp(move, "ra", 2) == 0)
+		ft_mc_r(stack_a);
+	else if (ft_strncmp(move, "rb", 2) == 0)
+		ft_mc_r(stack_a);
+	else if (ft_strncmp(move, "rra", 3) == 0)
+		ft_mc_rr(stack_a);
+	else if (ft_strncmp(move, "rrb", 3) == 0)
+		ft_mc_rr(stack_b);
+	else if (ft_strncmp(move, "rrr", 3) == 0)
+		ft_mc_rrr(stack_a, stack_b);
+	else if (ft_strncmp(move, "rr", 2) == 0)
+		ft_mc_rr2(stack_a, stack_b);
 }
 
 int	main(int argc, char **argv)
