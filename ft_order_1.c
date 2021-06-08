@@ -83,4 +83,3 @@ void	ft_incrust_a_i_b_r(t_sol *solution, t_stack *stack_a, t_stack *stack_b)
 	else
 		ft_incrust_button(solution, stack_a, stack_b, j);
 }
-
