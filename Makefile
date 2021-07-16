@@ -23,8 +23,6 @@ OBJECTS = *.o
 .PHONY: all clean fclean f re library mchek
 
 $(NAME): $(SOURCES)
-	cd libft && make
-	cd ..
 	$(COMPILER) $(FLAGS) $(SOURCES) $(PSMAIN) $(LIBFT) -o $(NAME)
 
 all: library $(NAME) mchek
@@ -40,4 +38,4 @@ fclean: clean
 f: fclean
 re: fclean all
 mchek: $(SOURCES2)
-	$(COMPILER) $(FLAGS) $(SOURCES2) $(SOURCES)  $(LIBFT) -o $(NAME2)
+	$(COMPILER) $(FLAGS) $(SOURCES2) $(SOURCES) $(LIBFT) -o $(NAME2)
