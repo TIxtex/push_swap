@@ -83,7 +83,7 @@ void	ft_optimice_sol_4(t_sol *solution)
 		i[2] = 'r';
 		i[3] = '\0';
 		aux = ft_strjoin(solution->start, &i[7]);
-		solution->tam -= 3;
+		solution->tam -= 4;
 		free(solution->start);
 		solution->start = aux;
 		ft_optimice_sol_4(solution);

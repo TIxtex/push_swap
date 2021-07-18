@@ -27,7 +27,6 @@ typedef struct s_sol
 t_stack	*ft_check_arg(int argc, char **argv);
 void	ft_have_dup(t_stack *stack);
 void	ft_putstack(t_stack *stack, char s);//
-void	ft_error(char *error);
 void	ft_isordered(t_stack *stack);
 t_stack	*ft_reserve_stack(int tam);
 void	ft_core(t_stack *stack_a, t_sol *solution);

@@ -26,6 +26,7 @@ t_sol	*ft_solnew(void)
 
 void	ft_optimice_sol(t_sol *solution)
 {
+	ft_soladd(solution, "\0");
 	ft_optimice_sol_0(solution);
 	ft_optimice_sol_1(solution);
 	ft_optimice_sol_2(solution);
@@ -34,4 +35,5 @@ void	ft_optimice_sol(t_sol *solution)
 	ft_optimice_sol_5(solution);
 	ft_optimice_sol_6(solution);
 	ft_optimice_sol_7(solution);
+	ft_soladd(solution, "\0");
 }

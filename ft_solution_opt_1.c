@@ -11,7 +11,7 @@ void	ft_optimice_sol_5(t_sol *solution)
 		i[2] = 'r';
 		i[3] = '\0';
 		aux = ft_strjoin(solution->start, &i[7]);
-		solution->tam -= 3;
+		solution->tam -= 4;
 		free(solution->start);
 		solution->start = aux;
 		ft_optimice_sol_5(solution);
@@ -28,7 +28,7 @@ void	ft_optimice_sol_6(t_sol *solution)
 	{
 		i[0] = '\0';
 		aux = ft_strjoin(solution->start, &i[6]);
-		solution->tam -= 3;
+		solution->tam -= 5;
 		free(solution->start);
 		solution->start = aux;
 		ft_optimice_sol_6(solution);
@@ -45,9 +45,8 @@ void	ft_optimice_sol_7(t_sol *solution)
 	{
 		i[0] = '\0';
 		aux = ft_strjoin(solution->start, &i[6]);
-		solution->tam -= 3;
+		solution->tam -= 5;
 		free(solution->start);
 		solution->start = aux;
-		ft_optimice_sol_7(solution);
 	}
 }

@@ -12,23 +12,27 @@
 
 NAME = push_swap
 NAME2 = checker
-PSMAIN = obligatoria/main.c
+PSMAIN = mandatory/main.c
 COMPILER = gcc
 FLAGS = -Wall -Wextra -Werror
-SOURCES = *.c
-SOURCES2 = bonificacion/*.c
+SOURCES = ft_core.c ft_movs_0.c ft_movs_1.c ft_movs_2.c\
+	ft_order_0.c ft_order_1.c ft_solution_opt_0.c ft_solution_opt_1.c\
+	ft_solution.c ft_tools.c
+SOURCESB = bonus/main.c bonus/ft_movsc_0.c\
+	bonus/ft_movsc_1.c
 LIBFT = libft/libft.a
-OBJECTS = *.o
 
 .PHONY: all clean fclean f re library mchek
 
 $(NAME): $(SOURCES)
-	$(COMPILER) $(FLAGS) $(SOURCES) $(PSMAIN) $(LIBFT) -o $(NAME)
-
-all: library $(NAME) mchek
-library:
 	cd libft && make
 	cd ..
+	$(COMPILER) $(FLAGS) $(SOURCES) $(PSMAIN) $(LIBFT) -o $(NAME)
+	
+$(NAME2): $(SOURCESB)
+	$(COMPILER) $(FLAGS) $(SOURCESB) $(SOURCES) $(LIBFT) -o $(NAME2)
+
+all: $(NAME) $(NAME2)
 clean:
 	/bin/rm -rf $(OBJECTS)
 fclean: clean
@@ -37,5 +41,5 @@ fclean: clean
 	/bin/rm -rf $(LIBFT)
 f: fclean
 re: fclean all
-mchek: $(SOURCES2)
-	$(COMPILER) $(FLAGS) $(SOURCES2) $(SOURCES) $(LIBFT) -o $(NAME2)
+bonus: $(NAME2)
+	

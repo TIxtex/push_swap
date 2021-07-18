@@ -58,9 +58,3 @@ void	ft_putstack(t_stack *stack, char s)
 	}
 	ft_putstr_fd("||_ _ _ _ _ _ _ _ _ _ _ ||\n\n", 1);
 }
-
-void	ft_error(char *error)
-{
-	ft_putstr_fd(error, 1);
-	exit(-1);
-}
