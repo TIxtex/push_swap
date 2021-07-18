@@ -15,9 +15,9 @@ NAME2 = checker
 PSMAIN = mandatory/main.c
 COMPILER = gcc
 FLAGS = -Wall -Wextra -Werror
-SOURCES = ft_core.c ft_movs_0.c ft_movs_1.c ft_movs_2.c\
-	ft_order_0.c ft_order_1.c ft_solution_opt_0.c ft_solution_opt_1.c\
-	ft_solution.c ft_tools.c
+SOURCES = ft_core.c ft_movements.c \
+	ft_order.c ft_order_aux.c \
+	ft_solution.c ft_solution_optimice.c ft_tools.c
 SOURCESB = bonus/main.c bonus/ft_movsc_0.c\
 	bonus/ft_movsc_1.c
 LIBFT = libft/libft.a

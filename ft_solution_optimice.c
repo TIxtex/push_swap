@@ -14,7 +14,7 @@ void	ft_optimice_sol_0(t_sol *solution, char *find, char put, int num)
 		solution->tam -= num;
 		free(solution->start);
 		solution->start = aux;
-		ft_optimice_sol_0(solution);
+		ft_optimice_sol_0(solution, find, put, num);
 	}
 }
 
@@ -32,7 +32,7 @@ void	ft_optimice_sol_1(t_sol *solution, char *find, char put, int num)
 		solution->tam -= num;
 		free(solution->start);
 		solution->start = aux;
-		ft_optimice_sol_0(solution);
+		ft_optimice_sol_1(solution, find, put, num);
 	}
 }
 
@@ -41,7 +41,7 @@ void	ft_optimice_sol_2(t_sol *solution, char *find, int num)
 	char	*i;
 	char	*aux;
 
-	i = ft_strnstr(solution->start, "pb\npa", solution->tam);
+	i = ft_strnstr(solution->start, find, solution->tam);
 	if (NULL != i)
 	{
 		i[0] = '\0';
@@ -49,5 +49,6 @@ void	ft_optimice_sol_2(t_sol *solution, char *find, int num)
 		solution->tam -= num;
 		free(solution->start);
 		solution->start = aux;
+		ft_optimice_sol_2(solution, find, num);
 	}
 }
