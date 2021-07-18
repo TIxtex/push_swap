@@ -36,28 +36,16 @@ void	ft_incrust_button_r(t_sol *solution, t_stack *stack_a, t_stack *stack_b,
 			int num);
 void	ft_incrust_top_r(t_sol *solution, t_stack *stack_a, t_stack *stack_b,
 			int num);
-// FT_MOVS.C
-void	ft_m_sa(t_sol *solution, t_stack *stack_a);
-void	ft_m_sb(t_sol *solution, t_stack *stack_b);
-void	ft_m_ss(t_sol *solution, t_stack *stack_a, t_stack *stack_b);
-void	ft_m_ra(t_sol *solution, t_stack *stack_a);
-void	ft_m_rb(t_sol *solution, t_stack *stack_b);
-void	ft_m_rr(t_sol *solution, t_stack *stack_a, t_stack *stack_b);
-void	ft_m_rra(t_sol *solution, t_stack *stack_a);
-void	ft_m_rrb(t_sol *solution, t_stack *stack_b);
-void	ft_m_rrr(t_sol *solution, t_stack *stack_a, t_stack *stack_b);
-void	ft_m_pa(t_sol *solution, t_stack *stack_a, t_stack *stack_b);
-void	ft_m_pb(t_sol *solution, t_stack *stack_a, t_stack *stack_b);
-void	ft_up(t_sol *solution, t_stack *stack, int num);
+// FT_MOVEMENTS.C
+void	ft_m_s(t_sol *solution, t_stack *stack, char *add);
+void	ft_m_r(t_sol *solution, t_stack *stack, char *add);
+void	ft_m_rr(t_sol *solution, t_stack *stack, char *add);
+void	ft_m_p1(t_sol *solution, t_stack *stack_1, t_stack *stack_2, char *add);
+void	ft_up(t_sol *solution, t_stack *stack, int num, char *add);
 // FT_SOLUTION
 t_sol	*ft_solnew(void);
 void	ft_soladd(t_sol *solution, char *add);
 void	ft_optimice_sol(t_sol *solution);
-void	ft_optimice_sol_7(t_sol *solution);
-void	ft_optimice_sol_6(t_sol *solution);
-void	ft_optimice_sol_5(t_sol *solution);
-void	ft_optimice_sol_4(t_sol *solution);
-void	ft_optimice_sol_3(t_sol *solution);
 void	ft_optimice_sol_2(t_sol *solution);
 void	ft_optimice_sol_1(t_sol *solution);
 void	ft_optimice_sol_0(t_sol *solution);

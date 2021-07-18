@@ -8,14 +8,14 @@ static void	ft_incrust_top(t_sol *solution, t_stack *stack_a, t_stack *stack_b,
 	j = num;
 	while (num > 1)
 	{
-		ft_m_rb(solution, stack_b);
+		ft_m_r(solution, stack_b, "rb\n");
 		num--;
 	}
-	ft_m_pb(solution, stack_a, stack_b);
+	ft_m_p1(solution, stack_b, stack_a, "pb\n");
 	if (1 == num)
-		ft_m_sb(solution, stack_b);
+		ft_m_s(solution, stack_b, "sb\n");
 	while (j-- > 1)
-		ft_m_rrb(solution, stack_b);
+		ft_m_rr(solution, stack_b, "rrb\n");
 }
 
 static void	ft_incrust_button(t_sol *solution,
@@ -25,11 +25,11 @@ static void	ft_incrust_button(t_sol *solution,
 
 	i = num;
 	while (--num >= 0)
-		ft_m_rrb(solution, stack_b);
-	ft_m_pb(solution, stack_a, stack_b);
-	ft_m_rb(solution, stack_b);
+		ft_m_rr(solution, stack_b, "rrb\n");
+	ft_m_p1(solution, stack_b, stack_a, "pb\n");
+	ft_m_r(solution, stack_b, "rb\n");
 	while (i-- > 0)
-		ft_m_rb(solution, stack_b);
+		ft_m_r(solution, stack_b, "rb\n");
 }
 
 void	ft_incrust_top_r(t_sol *solution, t_stack *stack_a, t_stack *stack_b,
@@ -40,14 +40,14 @@ void	ft_incrust_top_r(t_sol *solution, t_stack *stack_a, t_stack *stack_b,
 	j = num;
 	while (num > 0)
 	{
-		ft_m_ra(solution, stack_a);
+		ft_m_r(solution, stack_a, "ra\n");
 		num--;
 	}
-	ft_m_pa(solution, stack_a, stack_b);
+	ft_m_p1(solution, stack_a, stack_b, "pa\n");
 	if (1 == num)
-		ft_m_sa(solution, stack_a);
+		ft_m_s(solution, stack_a, "sa\n");
 	while (j-- > 1)
-		ft_m_rra(solution, stack_a);
+		ft_m_rr(solution, stack_a, "rra\n");
 }
 
 void	ft_incrust_button_r(t_sol *solution, t_stack *stack_a, t_stack *stack_b,
@@ -57,11 +57,11 @@ void	ft_incrust_button_r(t_sol *solution, t_stack *stack_a, t_stack *stack_b,
 
 	i = num;
 	while (--num >= 0)
-		ft_m_rra(solution, stack_a);
-	ft_m_pa(solution, stack_a, stack_b);
-	ft_m_ra(solution, stack_a);
+		ft_m_rr(solution, stack_a, "rra\n");
+	ft_m_p1(solution, stack_a, stack_b, "pa\n");
+	ft_m_r(solution, stack_a, "ra\n");
 	while (i-- > 0)
-		ft_m_ra(solution, stack_a);
+		ft_m_r(solution, stack_a, "ra\n");
 }
 
 void	ft_incrust_a_i_b_r(t_sol *solution, t_stack *stack_a, t_stack *stack_b)
@@ -77,7 +77,7 @@ void	ft_incrust_a_i_b_r(t_sol *solution, t_stack *stack_a, t_stack *stack_b)
 		&& stack_a->stack[0] > stack_b->stack[(stack_b->tam - 1) - j])
 		j++;
 	if (stack_b->tam == 0 || stack_a->stack[0] > stack_b->stack[0])
-		ft_m_pb(solution, stack_a, stack_b);
+		ft_m_p1(solution, stack_b, stack_a, "pb\n");
 	else if (i <= j + 1)
 		ft_incrust_top(solution, stack_a, stack_b, i);
 	else
