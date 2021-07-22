@@ -1,6 +1,7 @@
 #ifndef CHECKER_H
 # define CHECKER_H
 # include "../push_swap.h"
+# include <stdio.h>
 
 void	ft_mc_s(t_stack *stack_a);
 void	ft_mc_ss(t_stack *stack_a, t_stack *stack_b);

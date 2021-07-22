@@ -1,6 +1,6 @@
 #include "checker.h"
 
-static void	ft_isordered2(t_stack *stack, t_stack *stack_b)
+static void	ft_isordered2(t_stack *stack)
 {
 	int	i;
 	int	flag;
@@ -10,10 +10,10 @@ static void	ft_isordered2(t_stack *stack, t_stack *stack_b)
 	while (++i < stack->tam - 1 && flag)
 		if (stack->stack[i] > stack->stack[i + 1])
 			flag = 0;
-	if (flag == 0 || stack_b->tam != 0)
-		write(1, "KO\n", 3);
+	if (flag == 0)
+		write(STDOUT_FILENO, "KO\n", 3);
 	else
-		write(1, "K\n", 2);
+		write(STDOUT_FILENO, "OK\n", 3);
 }
 
 static void 	ft_make_move(char *move, t_stack *stack_a, t_stack *stack_b)
@@ -31,7 +31,7 @@ static void 	ft_make_move(char *move, t_stack *stack_a, t_stack *stack_b)
 	else if (ft_strncmp(move, "ra", 2) == 0)
 		ft_mc_r(stack_a);
 	else if (ft_strncmp(move, "rb", 2) == 0)
-		ft_mc_r(stack_a);
+		ft_mc_r(stack_b);
 	else if (ft_strncmp(move, "rra", 3) == 0)
 		ft_mc_rr(stack_a);
 	else if (ft_strncmp(move, "rrb", 3) == 0)
@@ -52,7 +52,7 @@ int	main(int argc, char **argv)
 	stack_b = ft_reserve_stack(stack_a->tam);
 	while (get_next_line(0, &line) > 0)
 		ft_make_move(line, stack_a, stack_b);
-	ft_isordered2(stack_a, stack_b);
+	ft_isordered2(stack_a);
 	free(stack_b->stack);
 	free(stack_b);
 	free(stack_a->stack);

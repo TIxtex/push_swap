@@ -12,5 +12,5 @@ int	main(int argc, char **argv)
 	free(solution);
 	free(stack_a->stack);
 	free(stack_a);
-	return (0);
+	return (1);
 }

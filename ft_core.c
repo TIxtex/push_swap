@@ -14,46 +14,54 @@ static void	ft_incrust_b_i_a(t_sol *solution,
 		&& stack_b->stack[0] < stack_a->stack[(stack_a->tam - 1) - j])
 		j++;
 	if (i <= j + 1)
-		ft_incrust_top_r(solution, stack_a, stack_b, i);
+		ft_incrust_top_pa(solution, stack_a, stack_b, i);
 	else
-		ft_incrust_button_r(solution, stack_a, stack_b, j);
+		ft_incrust_button_pa(solution, stack_a, stack_b, j);
 }
 
 static void	ft_order_3(t_sol *solution, t_stack *stack)
 {
-	if (stack->stack[1] > stack->stack[2])
+	if (0 == ft_isordered(stack))
 	{
-		if (stack->stack[0] < stack->stack[1]
-			&& stack->stack[0] > stack->stack[2])
-			ft_m_rr(solution, stack, "rra\n");
-		else
+		if (stack->stack[1] > stack->stack[2])
 		{
-			ft_m_s(solution, stack, "sa\n");
-			if (stack->stack[0] > stack->stack[1])
-				ft_m_r(solution, stack, "ra\n");
-			else
+			if (stack->stack[0] < stack->stack[1]
+				&& stack->stack[0] > stack->stack[2])
 				ft_m_rr(solution, stack, "rra\n");
+			else
+			{
+				ft_m_s(solution, stack, "sa\n");
+				if (stack->stack[0] > stack->stack[1])
+					ft_m_r(solution, stack, "ra\n");
+				else
+					ft_m_rr(solution, stack, "rra\n");
+			}
 		}
+		else if (stack->stack[0] > stack->stack[2])
+			ft_m_r(solution, stack, "ra\n");
+		else if (stack->stack[0] < stack->stack[2]
+			&& stack->stack[1] < stack->stack[0])
+			ft_m_s(solution, stack, "sa\n");
 	}
-	else if (stack->stack[0] > stack->stack[2])
-		ft_m_r(solution, stack, "ra\n");
-	else if (stack->stack[0] < stack->stack[2]
-		&& stack->stack[1] < stack->stack[0])
-		ft_m_s(solution, stack, "sa\n");
 }
 
 static void	ft_order_5(t_sol *solution, t_stack *stack_a)
 {
 	t_stack	*stack_b;
 
-	stack_b = ft_reserve_stack(2);
-	while (stack_a->tam > 3)
-		ft_m_p1(solution, stack_b, stack_a, "pb\n");
-	ft_order_3(solution, stack_a);
-	while (stack_b->tam > 0)
-		ft_incrust_b_i_a(solution, stack_a, stack_b);
-	free(stack_b->stack);
-	free(stack_b);
+	if (0 == ft_isordered(stack_a))
+	{
+		stack_b = ft_reserve_stack(2);
+		while (stack_a->tam > 3)
+			ft_m_p1(solution, stack_b, stack_a, "pb\n");
+		ft_order_3(solution, stack_a);
+		while (stack_b->tam > 0)
+			ft_incrust_b_i_a(solution, stack_a, stack_b);
+		free(stack_b->stack);
+		free(stack_b);
+		while (stack_a->stack[0] > stack_a->stack[stack_a->tam - 1])
+			ft_m_rr(solution, stack_a, "rra\n");
+	}
 }
 
 void	ft_core(t_stack *stack_a, t_sol *solution)
@@ -75,7 +83,7 @@ t_stack	*ft_check_arg(int argc, char **argv)
 	t_stack	*stack;
 	int		i;
 	int		j;
-	long	num;
+	double	num;
 
 	if (argc < 2)
 		ft_error("\n");
@@ -95,6 +103,5 @@ t_stack	*ft_check_arg(int argc, char **argv)
 	}
 	stack->tam = argc - 1;
 	ft_have_dup(stack);
-	ft_isordered(stack);
 	return (stack);
 }

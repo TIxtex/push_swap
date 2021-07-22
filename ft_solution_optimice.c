@@ -6,7 +6,7 @@ void	ft_optimice_sol_0(t_sol *solution, char *find, char put, int num)
 	char	*aux;
 
 	i = ft_strnstr(solution->start, find, solution->tam);
-	if (NULL != i)
+	if (NULL != i && i[-1] != 'r')
 	{
 		i[1] = put;
 		i[2] = '\0';
@@ -45,7 +45,7 @@ void	ft_optimice_sol_2(t_sol *solution, char *find, int num)
 	if (NULL != i)
 	{
 		i[0] = '\0';
-		aux = ft_strjoin(solution->start, &i[5]);
+		aux = ft_strjoin(solution->start, &i[6]);
 		solution->tam -= num;
 		free(solution->start);
 		solution->start = aux;

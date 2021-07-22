@@ -36,7 +36,7 @@ void	ft_m_rr(t_sol *solution, t_stack *stack, char *add)
 	ft_soladd(solution, add);
 }
 
-void ft_m_p1(t_sol *solution, t_stack *stack_1, t_stack *stack_2, char *add)
+void	ft_m_p1(t_sol *solution, t_stack *stack_1, t_stack *stack_2, char *add)
 {
 	int	i;
 
@@ -54,14 +54,17 @@ void ft_m_p1(t_sol *solution, t_stack *stack_1, t_stack *stack_2, char *add)
 
 void	ft_up(t_sol *solution, t_stack *stack, int num, char *add)
 {
-	char *print;
+	char	*print;
+
 	if (num > stack->tam / 2)
+	{
 		while (num++ < stack->tam)
 		{
 			print = ft_strjoin("r", add);
 			ft_m_rr(solution, stack, print);
 			free(print);
 		}
+	}
 	else
 		while (num-- > 0)
 			ft_m_r(solution, stack, add);
