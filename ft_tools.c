@@ -60,37 +60,3 @@ void	ft_putstack(t_stack *stack, char s)
 	}
 	ft_putstr_fd("||_ _ _ _ _ _ _ ||\n\n", 1);
 }
-
-t_stack	*ft_onearg(char *str)
-{
-	char	**split;
-	size_t	i;
-	double	num;
-	t_stack	*stack;
-
-	i = -1;
-	while (str[++i])
-		if (!ft_isdigit(str[i]) && (0 != str[i] || str[i] != '-')
-			&& !ft_isspace(str[i]))
-			ft_error("Error, caracteres especiales\n");
-	split = ft_split(str, ' ');
-	i = 0;
-	while (split[i] != 0)
-		i++;
-	stack = ft_reserve_stack(i);
-	i = 0;
-	while (split[i] != 0)
-	{
-		num = ft_atoi(split[i]);
-		if (num < INT_MIN || num > INT_MAX)
-			ft_error("Error, excedido limite de enteros.\n");
-		else
-			stack->stack[i] = (int)num;
-		i++;
-	}
-	stack->tam = i;
-	while (--i <= 0)
-		free(split[i]);
-	free (split);
-	return (stack);
-}

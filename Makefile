@@ -15,7 +15,7 @@ NAME2 = checker
 PSMAIN = mandatory/main.c
 COMPILER = gcc
 FLAGS = -Wall -Wextra -Werror -fsanitize=address
-SOURCES = ft_core.c ft_movements.c \
+SOURCES = ft_core.c ft_movements.c ft_check_arg.c\
 	ft_order.c ft_order_aux.c \
 	ft_solution.c ft_solution_optimice.c ft_tools.c
 SOURCESB = bonus/main.c bonus/ft_movsc_0.c\

@@ -77,36 +77,3 @@ void	ft_core(t_stack *stack_a, t_sol *solution)
 	ft_optimice_sol(solution);
 	write(STDOUT_FILENO, solution->start, solution->tam);
 }
-
-t_stack	*ft_check_arg(int argc, char **argv)
-{
-	t_stack	*stack;
-	int		i;
-	int		j;
-	double	num;
-
-	if (argc < 2)
-		ft_error("");
-	if (argc == 2)
-		stack = ft_onearg(argv[1]);
-	else
-	{
-		i = 0;
-		stack = ft_reserve_stack(argc - 1);
-		while (++i < argc)
-		{
-			j = -1;
-			while (argv[i][++j])
-				if (!ft_isdigit(argv[i][j]) && (0 != j || argv[i][0] != '-'))
-					ft_error("Error, caracteres especiales.\n");
-			num = ft_atoi(argv[i]);
-			if (num < INT_MIN || num > INT_MAX)
-				ft_error("Error, excedido limite de enteros.\n");
-			else
-				stack->stack[i - 1] = (int)num;
-		}
-		stack->tam = argc - 1;
-	}
-	ft_have_dup(stack);
-	return (stack);
-}
