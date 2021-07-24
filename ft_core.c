@@ -87,12 +87,12 @@ t_stack	*ft_check_arg(int argc, char **argv)
 
 	if (argc < 2)
 		ft_error("");
-	stack = ft_reserve_stack(argc - 1);
-	i = 0;
 	if (argc == 2)
-		ft_onearg(argv[1]);
+		stack = ft_onearg(argv[1]);
 	else
 	{
+		i = 0;
+		stack = ft_reserve_stack(argc - 1);
 		while (++i < argc)
 		{
 			j = -1;
@@ -105,8 +105,8 @@ t_stack	*ft_check_arg(int argc, char **argv)
 			else
 				stack->stack[i - 1] = (int)num;
 		}
+		stack->tam = argc - 1;
 	}
-	stack->tam = argc - 1;
 	ft_have_dup(stack);
 	return (stack);
 }
