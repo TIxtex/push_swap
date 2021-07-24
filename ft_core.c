@@ -86,20 +86,25 @@ t_stack	*ft_check_arg(int argc, char **argv)
 	double	num;
 
 	if (argc < 2)
-		ft_error("\n");
+		ft_error("");
 	stack = ft_reserve_stack(argc - 1);
 	i = 0;
-	while (++i < argc)
+	if (argc == 2)
+		ft_onearg(argv[1]);
+	else
 	{
-		j = -1;
-		while (argv[i][++j])
-			if (!ft_isdigit(argv[i][j]) && (0 != j || argv[i][0] != '-'))
-				ft_error("Error, caracteres especiales.\n");
-		num = ft_atoi(argv[i]);
-		if (num < INT_MIN || num > INT_MAX)
-			ft_error("Error, excedido limite de enteros.\n");
-		else
-			stack->stack[i - 1] = (int)num;
+		while (++i < argc)
+		{
+			j = -1;
+			while (argv[i][++j])
+				if (!ft_isdigit(argv[i][j]) && (0 != j || argv[i][0] != '-'))
+					ft_error("Error, caracteres especiales.\n");
+			num = ft_atoi(argv[i]);
+			if (num < INT_MIN || num > INT_MAX)
+				ft_error("Error, excedido limite de enteros.\n");
+			else
+				stack->stack[i - 1] = (int)num;
+		}
 	}
 	stack->tam = argc - 1;
 	ft_have_dup(stack);

@@ -32,6 +32,7 @@ void	ft_have_dup(t_stack *stack);
 void	ft_putstack(t_stack *stack, char s);//
 int		ft_isordered(t_stack *stack);
 t_stack	*ft_reserve_stack(int tam);
+int		ft_onearg(char *str);
 // FT_ORDER.c
 void	ft_order_100(t_sol *solution, t_stack *stack_a);
 void	ft_incrust_a_i_b_r(t_sol *solution, t_stack *stack_a, t_stack *stack_b);

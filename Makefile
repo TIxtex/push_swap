@@ -14,7 +14,7 @@ NAME = push_swap
 NAME2 = checker
 PSMAIN = mandatory/main.c
 COMPILER = gcc
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -fsanitize=address
 SOURCES = ft_core.c ft_movements.c \
 	ft_order.c ft_order_aux.c \
 	ft_solution.c ft_solution_optimice.c ft_tools.c

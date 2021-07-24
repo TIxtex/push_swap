@@ -60,3 +60,20 @@ void	ft_putstack(t_stack *stack, char s)
 	}
 	ft_putstr_fd("||_ _ _ _ _ _ _ ||\n\n", 1);
 }
+
+int		ft_onearg(char *str)
+{
+	char	**split;
+	size_t	i;
+
+	while (str[i])
+		if (!ft_isdigit(str[i]) && (0 != str[i] || str[i] != '-')
+			&& !ft_isspace(str[i]))
+			ft_error("Error, caracteres especiales\n");
+	split = ft_split(str, ' ');
+	i = 0;
+	while (split[i][0])
+	{
+		
+	}
+}
