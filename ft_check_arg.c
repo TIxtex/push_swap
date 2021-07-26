@@ -1,6 +1,17 @@
 #include "push_swap.h"
 
-t_stack	*ft_onearg(char *str)
+static void	ft_inrange(t_stack *stack, char *str, int i)
+{
+	double	num;
+
+	num = ft_atoi(str);
+	if (num < INT_MIN || num > INT_MAX)
+		ft_error("Error, excedido limite de enteros.\n");
+	else
+		stack->stack[i] = (int)num;
+}
+
+static	t_stack	*ft_onearg(char *str)
 {
 	char	**split;
 	size_t	i;
@@ -17,16 +28,9 @@ t_stack	*ft_onearg(char *str)
 	while (split[i] != 0)
 		i++;
 	stack = ft_reserve_stack(i);
-	i = 0;
-	while (split[i] != 0)
-	{
-		num = ft_atoi(split[i]);
-		if (num < INT_MIN || num > INT_MAX)
-			ft_error("Error, excedido limite de enteros.\n");
-		else
-			stack->stack[i] = (int)num;
-		i++;
-	}
+	i = -1;
+	while (split[++i] != 0)
+		ft_inrange(stack, split[i], i);
 	stack->tam = i;
 	while (--i <= 0)
 		free(split[i]);
@@ -47,22 +51,17 @@ t_stack	*ft_check_arg(int argc, char **argv)
 		stack = ft_onearg(argv[1]);
 	else
 	{
-		i = 0;
+		i = -1;
 		stack = ft_reserve_stack(argc - 1);
-		while (++i < argc)
+		while (++i < argc - 1)
 		{
 			j = -1;
-			while (argv[i][++j])
+			while (argv[i + 1][++j])
 				if (!ft_isdigit(argv[i][j]) && (0 != j || argv[i][0] != '-'))
 					ft_error("Error, caracteres especiales.\n");
-			num = ft_atoi(argv[i]);
-			if (num < INT_MIN || num > INT_MAX)
-				ft_error("Error, excedido limite de enteros.\n");
-			else
-				stack->stack[i - 1] = (int)num;
+			ft_inrange(stack, argv[i + 1], i);
 		}
 		stack->tam = argc - 1;
 	}
-	ft_have_dup(stack);
 	return (stack);
 }

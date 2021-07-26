@@ -43,21 +43,23 @@ int	ft_isordered(t_stack *stack)
 	return (0);
 }
 
-void	ft_putstack(t_stack *stack, char s)
+int	ft_condition(t_stack *stack_a, t_stack *stack_b, int i)
 {
-	int		i;
-
-	i = -1;
-	ft_putstr_fd("\n||Stack -> ", 1);
-	ft_putchar_fd(s, 1);
-	ft_putstr_fd("\n||_ _ _ _ ||\n", 1);
-	while (++i < stack->tam)
-	{
-		ft_putstr_fd("||\t", 1);
-		ft_putnbr_fd(stack->stack[i], 1);
-		ft_putstr_fd("\t||\n", 1);
-	}
-	ft_putstr_fd("||_ _ _ _ ||\n\n", 1);
+	if (0 == i && stack_a->stack[0] > stack_b->stack[0]
+		&& stack_a->stack[0] < stack_b->stack[stack_b->tam - 1])
+		return (0);
+	else if (stack_b->tam == i)
+		return (0);
+	else if (0 != i && stack_a->stack[0] > stack_b->stack[i]
+		&& stack_a->stack[0] < stack_b->stack[i - 1])
+		return (0);
+	else if (0 != i && stack_b->stack[i] > stack_b->stack[i - 1])
+		if ((stack_a->stack[0] > stack_b->stack[i]
+				&& stack_a->stack[0] > stack_b->stack[i - 1])
+			|| (stack_a->stack[0] < stack_b->stack[i]
+				&& stack_a->stack[0] < stack_b->stack[i - 1]))
+			return (0);
+	return (1);
 }
 
 void	ft_colocate(t_sol *solution, t_stack *stack)
@@ -77,3 +79,21 @@ void	ft_colocate(t_sol *solution, t_stack *stack)
 				ft_m_rr(solution, stack, "rrb\n");
 	}
 }
+
+/*
+void	ft_putstack(t_stack *stack, char s)
+{
+	int		i;
+
+	i = -1;
+	ft_putstr_fd("\n||Stack -> ", 1);
+	ft_putchar_fd(s, 1);
+	ft_putstr_fd("\n||_ _ _ _ ||\n", 1);
+	while (++i < stack->tam)
+	{
+		ft_putstr_fd("||\t", 1);
+		ft_putnbr_fd(stack->stack[i], 1);
+		ft_putstr_fd("\t||\n", 1);
+	}
+	ft_putstr_fd("||_ _ _ _ ||\n\n", 1);
+}*/

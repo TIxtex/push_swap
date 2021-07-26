@@ -49,6 +49,7 @@ int	main(int argc, char **argv)
 	char	*line;
 
 	stack_a = ft_check_arg(argc, argv);
+	ft_have_dup(stack_a);
 	stack_b = ft_reserve_stack(stack_a->tam);
 	while (get_next_line(0, &line) > 0)
 		ft_make_move(line, stack_a, stack_b);

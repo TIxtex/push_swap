@@ -28,8 +28,6 @@ void	ft_optimice_sol(t_sol *solution)
 {
 	ft_optimice_sol_0(solution, "sa\nsb", 's', 3);
 	ft_optimice_sol_0(solution, "sb\nsa", 's', 3);
-	ft_optimice_sol_0(solution, "ra\nrb", 'r', 3);
-	ft_optimice_sol_0(solution, "rb\nra", 'r', 3);
 	ft_optimice_sol_1(solution, "rra\nrrb", 'r', 4);
 	ft_optimice_sol_1(solution, "rrb\nrra", 'r', 4);
 	ft_optimice_sol_2(solution, "pa\npb", 6);

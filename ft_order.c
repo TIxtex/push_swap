@@ -34,9 +34,9 @@ static void	ft_2_step(t_sol *solution, t_stack *stack_a, t_stack *stack_b,
 	int			flag;
 
 	if (stack_a->tam > 100)
-		flag = 11;
+		flag = 14;
 	else
-		flag = 5;
+		flag = 6;
 	while (f->phase < flag && stack_a->tam != 0)
 	{
 		i = ft_find_1(stack_a, f);
@@ -73,7 +73,10 @@ static void	ft_1_step(t_sol *solution, t_stack *stack_a, t_stack *stack_b)
 		if (stack_a->stack[i] > fragment->max)
 			fragment->max = stack_a->stack[i];
 	}
-	fragment->tam = ((fragment->max - fragment->min) / 5) + 1;
+	if (stack_a->tam > 100)
+		fragment->tam = ((fragment->max - fragment->min) / 14) + 1;
+	else
+		fragment->tam = ((fragment->max - fragment->min) / 6) + 1;
 	ft_2_step(solution, stack_a, stack_b, fragment);
 	ft_colocate(solution, stack_b);
 	while (stack_b->tam != 0)
