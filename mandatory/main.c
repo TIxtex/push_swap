@@ -6,6 +6,7 @@ int	main(int argc, char **argv)
 	t_sol	*solution;
 
 	stack_a = ft_check_arg(argc, argv);
+	ft_have_dup(stack_a);
 	solution = ft_solnew();
 	ft_core(stack_a, solution);
 	free(solution->start);

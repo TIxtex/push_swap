@@ -15,7 +15,6 @@ static	t_stack	*ft_onearg(char *str)
 {
 	char	**split;
 	size_t	i;
-	double	num;
 	t_stack	*stack;
 
 	i = -1;
@@ -43,7 +42,6 @@ t_stack	*ft_check_arg(int argc, char **argv)
 	t_stack	*stack;
 	int		i;
 	int		j;
-	double	num;
 
 	if (argc < 2)
 		ft_error("");
@@ -57,7 +55,8 @@ t_stack	*ft_check_arg(int argc, char **argv)
 		{
 			j = -1;
 			while (argv[i + 1][++j])
-				if (!ft_isdigit(argv[i][j]) && (0 != j || argv[i][0] != '-'))
+				if (!ft_isdigit(argv[i + 1][j]) && (0 != j
+					|| argv[i + 1][0] != '-'))
 					ft_error("Error, caracteres especiales.\n");
 			ft_inrange(stack, argv[i + 1], i);
 		}

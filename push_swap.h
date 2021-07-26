@@ -30,7 +30,7 @@ void	ft_core(t_stack *stack_a, t_sol *solution);
 // FT_TOOLS.c
 void	ft_have_dup(t_stack *stack);
 //void	ft_putstack(t_stack *stack, char s);//
-int	ft_condition(t_stack *stack_a, t_stack *stack_b, int i);
+int		ft_condition(t_stack *stack_a, t_stack *stack_b, int i);
 int		ft_isordered(t_stack *stack);
 t_stack	*ft_reserve_stack(int tam);
 void	ft_colocate(t_sol *solution, t_stack *stack);
