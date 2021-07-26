@@ -28,10 +28,10 @@ LIBFT = libft/libft.a
 $(NAME): $(SOURCES)
 	cd libft && make
 	cd ..
-	$(COMPILER) $(FLAGS) $(FLAGE) $(SOURCES) $(PSMAIN) $(LIBFT) -o $(NAME)
+	$(COMPILER) $(FLAGS) $(SOURCES) $(PSMAIN) $(LIBFT) -o $(NAME)
 	
 $(NAME2): $(SOURCESB)
-	$(COMPILER) $(FLAGS) $(FLAGE) $(SOURCESB) $(SOURCES) $(LIBFT) -o $(NAME2)
+	$(COMPILER) $(FLAGS) $(SOURCESB) $(SOURCES) $(LIBFT) -o $(NAME2)
 
 all: $(NAME) $(NAME2)
 clean:

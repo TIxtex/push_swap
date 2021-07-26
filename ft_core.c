@@ -76,5 +76,4 @@ void	ft_core(t_stack *stack_a, t_sol *solution)
 		ft_order_100(solution, stack_a);
 	ft_optimice_sol(solution);
 	write(STDOUT_FILENO, solution->start, solution->tam);
-	ft_putstack(stack_a, 'A');
 }

@@ -59,3 +59,21 @@ void	ft_putstack(t_stack *stack, char s)
 	}
 	ft_putstr_fd("||_ _ _ _ ||\n\n", 1);
 }
+
+void	ft_colocate(t_sol *solution, t_stack *stack)
+{
+	int	i;
+
+	i = 0;
+	while (i < stack->tam - 1 && stack->stack[i] > stack->stack[i + 1])
+		i++;
+	if (i != stack->tam - 1)
+	{
+		if (i < stack->tam / 2)
+			while (i-- > 0)
+				ft_m_r(solution, stack, "rb\n");
+		else
+			while (i++ < stack->tam - 1)
+				ft_m_rr(solution, stack, "rrb\n");
+	}
+}

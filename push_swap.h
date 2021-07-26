@@ -33,6 +33,7 @@ void	ft_putstack(t_stack *stack, char s);//
 int		ft_isordered(t_stack *stack);
 t_stack	*ft_reserve_stack(int tam);
 t_stack	*ft_onearg(char *str);
+void	ft_colocate(t_sol *solution, t_stack *stack);
 // FT_ORDER.c
 void	ft_order_100(t_sol *solution, t_stack *stack_a);
 void	ft_incrust_a_i_b_r(t_sol *solution, t_stack *stack_a, t_stack *stack_b);

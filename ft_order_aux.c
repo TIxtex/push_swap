@@ -73,15 +73,15 @@ void	ft_incrust_button_pa(t_sol *solution, t_stack *stack_a,
 	}
 }
 
-int		ft_condition(t_stack *stack_a, t_stack *stack_b, int i)
+static int	ft_condition(t_stack *stack_a, t_stack *stack_b, int i)
 {
 	if (0 == i && stack_a->stack[0] > stack_b->stack[0] && stack_a->stack[0] < stack_b->stack[stack_b->tam - 1])
 		return (0);
 	else if (stack_b->tam == i)
 		return (0);
-	else if (stack_a->stack[0] > stack_b->stack[i] && stack_a->stack[0] < stack_b->stack[i - 1])
+	else if (0 != i && stack_a->stack[0] > stack_b->stack[i] && stack_a->stack[0] < stack_b->stack[i - 1])
 		return (0);
-	else if ( 0 != i && stack_b->stack[i] > stack_b->stack[i - 1])
+	else if (0 != i && stack_b->stack[i] > stack_b->stack[i - 1])
 		if ((stack_a->stack[0] > stack_b->stack[i] && stack_a->stack[0] > stack_b->stack[i - 1]) || (stack_a->stack[0] < stack_b->stack[i] && stack_a->stack[0] < stack_b->stack[i - 1]))
 			return (0);
 	return (1);
