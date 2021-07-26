@@ -50,6 +50,7 @@ static void	ft_2_step(t_sol *solution, t_stack *stack_a, t_stack *stack_b,
 			ft_incrust_a_i_b_r(solution, stack_a, stack_b);
 			i = ft_find_1(stack_a, f);
 			j = ft_find_2(stack_a, f);
+			ft_putstack(stack_b, 'x');
 		}
 		f->phase += 1;
 	}

@@ -14,8 +14,8 @@ static void	ft_incrust_top(t_sol *solution, t_stack *stack_a, t_stack *stack_b,
 	ft_m_p1(solution, stack_b, stack_a, "pb\n");
 	if (1 == num)
 		ft_m_s(solution, stack_b, "sb\n");
-	while (j-- > 1)
-		ft_m_rr(solution, stack_b, "rrb\n");
+//	while (j-- > 1)
+//		ft_m_rr(solution, stack_b, "rrb\n");
 }
 
 static void	ft_incrust_button(t_sol *solution,
@@ -27,9 +27,9 @@ static void	ft_incrust_button(t_sol *solution,
 	while (--num >= 0)
 		ft_m_rr(solution, stack_b, "rrb\n");
 	ft_m_p1(solution, stack_b, stack_a, "pb\n");
-	ft_m_r(solution, stack_b, "rb\n");
-	while (i-- > 0)
-		ft_m_r(solution, stack_b, "rb\n");
+//	ft_m_r(solution, stack_b, "rb\n");
+//	while (i-- > 0)
+//		ft_m_r(solution, stack_b, "rb\n");
 }
 
 void	ft_incrust_top_pa(t_sol *solution, t_stack *stack_a, t_stack *stack_b,
@@ -73,19 +73,30 @@ void	ft_incrust_button_pa(t_sol *solution, t_stack *stack_a,
 	}
 }
 
+int		ft_condition(t_stack *stack_a, t_stack *stack_b, int i)
+{
+	if (0 == i && stack_a->stack[0] > stack_b->stack[0] && stack_a->stack[0] < stack_b->stack[stack_b->tam - 1])
+		return (0);
+	else if (stack_b->tam == i)
+		return (0);
+	else if (stack_a->stack[0] > stack_b->stack[i] && stack_a->stack[0] < stack_b->stack[i - 1])
+		return (0);
+	else if ( 0 != i && stack_b->stack[i] > stack_b->stack[i - 1])
+		if ((stack_a->stack[0] > stack_b->stack[i] && stack_a->stack[0] > stack_b->stack[i - 1]) || (stack_a->stack[0] < stack_b->stack[i] && stack_a->stack[0] < stack_b->stack[i - 1]))
+			return (0);
+	return (1);
+}
+
 void	ft_incrust_a_i_b_r(t_sol *solution, t_stack *stack_a, t_stack *stack_b)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	j = 0;
-	while (stack_b->tam > i && stack_a->stack[0] < stack_b->stack[i])
+	while (ft_condition(stack_a, stack_b, i) && stack_b->tam != 0)
 		i++;
-	while (stack_b->tam > j
-		&& stack_a->stack[0] > stack_b->stack[(stack_b->tam - 1) - j])
-		j++;
-	if (stack_b->tam == 0 || stack_a->stack[0] > stack_b->stack[0])
+	j = stack_b->tam - i;
+	if (stack_b->tam == 0)
 		ft_m_p1(solution, stack_b, stack_a, "pb\n");
 	else if (i <= j + 1)
 		ft_incrust_top(solution, stack_a, stack_b, i);

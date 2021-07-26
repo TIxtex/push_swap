@@ -50,13 +50,12 @@ void	ft_putstack(t_stack *stack, char s)
 	i = -1;
 	ft_putstr_fd("\n||Stack -> ", 1);
 	ft_putchar_fd(s, 1);
-	ft_putstr_fd("\n||_ _ _ _ _ _ _ ||\n", 1);
+	ft_putstr_fd("\n||_ _ _ _ ||\n", 1);
 	while (++i < stack->tam)
 	{
 		ft_putstr_fd("||\t", 1);
 		ft_putnbr_fd(stack->stack[i], 1);
 		ft_putstr_fd("\t||\n", 1);
-		ft_putstr_fd("\n||_ _ _ _ _ _ _ ||\n", 1);
 	}
-	ft_putstr_fd("||_ _ _ _ _ _ _ ||\n\n", 1);
+	ft_putstr_fd("||_ _ _ _ ||\n\n", 1);
 }

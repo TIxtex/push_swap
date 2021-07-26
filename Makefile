@@ -14,7 +14,8 @@ NAME = push_swap
 NAME2 = checker
 PSMAIN = mandatory/main.c
 COMPILER = gcc
-FLAGS = -Wall -Wextra -Werror -fsanitize=address
+FLAGS = -Wall -Wextra -Werror
+FLAGE = -fsanitize=address
 SOURCES = ft_core.c ft_movements.c ft_check_arg.c\
 	ft_order.c ft_order_aux.c \
 	ft_solution.c ft_solution_optimice.c ft_tools.c
@@ -27,10 +28,10 @@ LIBFT = libft/libft.a
 $(NAME): $(SOURCES)
 	cd libft && make
 	cd ..
-	$(COMPILER) $(FLAGS) $(SOURCES) $(PSMAIN) $(LIBFT) -o $(NAME)
+	$(COMPILER) $(FLAGS) $(FLAGE) $(SOURCES) $(PSMAIN) $(LIBFT) -o $(NAME)
 	
 $(NAME2): $(SOURCESB)
-	$(COMPILER) $(FLAGS) $(SOURCESB) $(SOURCES) $(LIBFT) -o $(NAME2)
+	$(COMPILER) $(FLAGS) $(FLAGE) $(SOURCESB) $(SOURCES) $(LIBFT) -o $(NAME2)
 
 all: $(NAME) $(NAME2)
 clean:
