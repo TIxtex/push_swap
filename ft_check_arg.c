@@ -19,8 +19,7 @@ static	t_stack	*ft_onearg(char *str)
 
 	i = -1;
 	while (str[++i])
-		if (!ft_isdigit(str[i]) && (0 != str[i] || str[i] != '-')
-			&& !ft_isspace(str[i]))
+		if (!ft_isdigit(str[i]) && str[i] != '-' && !ft_isspace(str[i]))
 			ft_error("Error, caracteres especiales\n");
 	split = ft_split(str, ' ');
 	i = 0;
