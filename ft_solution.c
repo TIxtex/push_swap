@@ -32,6 +32,8 @@ void	ft_optimice_sol(t_sol *solution)
 	ft_optimice_sol_1(solution, "rrb\nrra", 'r', 4);
 	ft_optimice_sol_2(solution, "pa\npb", 6);
 	ft_optimice_sol_2(solution, "pb\npa", 6);
+	ft_optimice_sol_3(solution, "\nra\nrb", 'r', 3);
+	ft_optimice_sol_3(solution, "\nrb\nra", 'r', 3);
 	if (solution->start[solution->tam] == '\n')
 		solution->start[solution->tam] = '\0';
 }

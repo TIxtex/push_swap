@@ -52,3 +52,21 @@ void	ft_optimice_sol_2(t_sol *solution, char *find, int num)
 		ft_optimice_sol_2(solution, find, num);
 	}
 }
+
+void	ft_optimice_sol_3(t_sol *solution, char *find, char put, int num)
+{
+	char	*i;
+	char	*aux;
+
+	i = ft_strnstr(solution->start, find, solution->tam);
+	if (NULL != i && i[-1] != 'r')
+	{
+		i[2] = put;
+		i[3] = '\0';
+		aux = ft_strjoin(solution->start, &i[6]);
+		solution->tam -= num;
+		free(solution->start);
+		solution->start = aux;
+		ft_optimice_sol_3(solution, find, put, num);
+	}
+}
