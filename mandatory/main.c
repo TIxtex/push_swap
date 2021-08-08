@@ -13,6 +13,5 @@ int	main(int argc, char **argv)
 	free(solution);
 	free(stack_a->stack);
 	free(stack_a);
-	system("leaks push_swap");
 	return (1);
 }
