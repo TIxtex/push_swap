@@ -1,4 +1,5 @@
 #include "push_swap.h"
+#include <stdio.h>
 
 static void	ft_inrange(t_stack *stack, char *str, int i)
 {
@@ -11,7 +12,7 @@ static void	ft_inrange(t_stack *stack, char *str, int i)
 		stack->stack[i] = (int)num;
 }
 
-static	t_stack	*ft_onearg(char *str)
+static t_stack	*ft_onearg(char *str)
 {
 	char	**split;
 	size_t	i;
@@ -30,8 +31,9 @@ static	t_stack	*ft_onearg(char *str)
 	while (split[++i] != 0)
 		ft_inrange(stack, split[i], i);
 	stack->tam = i;
-	while (--i <= 0)
-		free(split[i]);
+	i = 0;
+	while (i < (size_t)stack->tam)
+		free (split[i++]);
 	free (split);
 	return (stack);
 }
