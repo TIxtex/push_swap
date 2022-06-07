@@ -11,36 +11,52 @@
 # **************************************************************************** #
 
 NAME = push_swap
-NAME2 = checker
-PSMAIN = mandatory/main.c
-COMPILER = gcc
-FLAGS = -Wall -Wextra -Werror
-FLAGE = -fsanitize=address
-SOURCES = ft_core.c ft_movements.c ft_check_arg.c\
-	ft_order.c ft_order_aux.c \
-	ft_solution.c ft_solution_optimice.c ft_tools.c
-SOURCESB = bonus/main.c bonus/ft_movsc_0.c\
-	bonus/ft_movsc_1.c
+NAMEB = checker
+CC = clang
+CFLAGS = -Wall -Wextra -Werror
+DEBUG = -fsanitize=address
 LIBFT = libft/libft.a
 
-.PHONY: all clean fclean f re library mchek
+INCLUDE = \
+	push_swap.h
+MAINM = mandatory/main.c
+MAINB = bonus/main.c
+SOURCES = \
+	ft_check_args.c \
+	ft_core.c \
+	ft_movements.c \
+	ft_order.c ft_order_aux.c \
+	ft_solution.c ft_solution_optimice.c \
+	ft_tools.c
+SOURCESB = \
+	bonus/main.c \
+	bonus/ft_movsc_0.c\
+	bonus/ft_movsc_1.c
+OBJECTS = $(SOURCES:.c=.o)
+OBJECTSB = $(SOURCESB:.c=.o)
 
-$(NAME): $(SOURCES)
-	cd libft && make
-	cd ..
-	$(COMPILER) $(FLAGS) $(SOURCES) $(PSMAIN) $(LIBFT) -o $(NAME)
+$(NAME): $(INCLUDE) $(LIBFT) $(OBJECTS)
+	$(CC) $(CFLAGS) $(LIBFT) $(OBJECTS) $(MAINM) -o $(NAME)
 	
-$(NAME2): $(SOURCESB)
-	$(COMPILER) $(FLAGS) $(SOURCESB) $(SOURCES) $(LIBFT) -o $(NAME2)
+$(NAMEB): $(INCLUDE) $(LIBFT) $(OBJECTSB) $(OBJECTS)
+	$(CC) $(FLAGS) $(LIBFT) $(OBJECTS) $(OBJECTSB) $(MAINB) -o $(NAMEB)
 
-all: $(NAME) $(NAME2)
+$(LIBFT):
+	cd libft && make
+	cd .
+.PHONY: all clean fclean f re
+
+all: $(LIBFT) $(NAME)
+bonus: $(NAMEB)
 clean:
 	/bin/rm -rf $(OBJECTS)
+	/bin/rm -rf $(OBJECTSB)
+	cd libft && make clean
+	cd ..
 fclean: clean
 	/bin/rm -rf $(NAME)
 	/bin/rm -rf $(NAME2)
 	/bin/rm -rf $(LIBFT)
-f: fclean
 re: fclean all
-bonus: $(NAME2)
+f: fclean
 	

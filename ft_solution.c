@@ -14,13 +14,15 @@ t_sol	*ft_solnew(void)
 {
 	t_sol	*solution;
 
-	solution = (t_sol *)ft_calloc(1, sizeof(t_sol));
-	if (NULL == solution)
-		ft_error("Error. Reserva de memoria");
-	solution->start = (char *)ft_calloc(1, sizeof(char));
-	if (NULL == solution->start)
-		ft_error("Error. Reserva de memoria");
-	solution->tam = 0;
+	solution = (t_sol *)ft_calloc(TRUE, sizeof(t_sol));
+	if (NULL != solution)
+	{
+		solution->start = (char *)ft_calloc(TRUE, sizeof(char));
+		if (NULL != solution->start)
+			solution->tam = ZERO;
+		else
+			solution = soluton->start
+	}
 	return (solution);
 }
 
