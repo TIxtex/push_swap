@@ -1,29 +1,16 @@
 #include "push_swap.h"
 
-t_stack	*ft_reserve_stack(int tam)
-{
-	t_stack	*stack;
-
-	stack = (t_stack *)ft_calloc(1, sizeof(t_stack));
-	if (NULL == stack)
-		ft_error("Error, fallo en reserva de memoria.\n");
-	stack->stack = (int *)ft_calloc(tam, sizeof(int));
-	if (NULL == stack->stack)
-		ft_error("Error, fallo en reserva de memoria.\n");
-	return (stack);
-}
-
 void	ft_have_dup(t_stack *stack)
 {
-	int	i;
-	int	j;
+	size_t	x;
+	size_t	y;
 
-	i = -1;
-	while (++i < stack->tam)
+	x = -1;
+	while (++x < stack->tam)
 	{
-		j = i;
-		while (++j < stack->tam)
-			if (stack->stack[i] == stack->stack[j])
+		y = x;
+		while (++y < stack->tam)
+			if (stack->stack[x] == stack->stack[y])
 				ft_error("Error, numeros duplicados.\n");
 	}
 }
@@ -78,6 +65,12 @@ void	ft_colocate(t_sol *solution, t_stack *stack)
 			while (i++ < stack->tam - 1)
 				ft_m_rr(solution, stack, "rrb\n");
 	}
+}
+
+void	ft_error(char	*error)
+{
+	ft_puterror(error);
+	exit (-42);
 }
 
 /*
