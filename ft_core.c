@@ -3,8 +3,8 @@
 static void	ft_incrust_b_i_a(t_smart_str *solution,
 			t_stack *stack_a, t_stack *stack_b)
 {
-	int	i;
-	int	j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	j = 0;
@@ -71,6 +71,6 @@ void	ft_core(t_stack *stack_a, t_smart_str *solution)
 		else if (5 < stack_a->tam)
 			ft_order_100(solution, stack_a);
 		ft_optimice_sol(solution);
-		write(STDOUT_FILENO, solution->start, solution->tam);
+		write(STDOUT_FILENO, solution->str, solution->size);
 	}
 }
