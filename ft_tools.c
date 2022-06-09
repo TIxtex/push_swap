@@ -49,7 +49,7 @@ int	ft_condition(t_stack *stack_a, t_stack *stack_b, int i)
 	return (1);
 }
 
-void	ft_colocate(t_sol *solution, t_stack *stack)
+void	ft_colocate(t_smart_str *solution, t_stack *stack)
 {
 	int	i;
 
@@ -65,12 +65,6 @@ void	ft_colocate(t_sol *solution, t_stack *stack)
 			while (i++ < stack->tam - 1)
 				ft_m_rr(solution, stack, "rrb\n");
 	}
-}
-
-void	ft_error(char	*error)
-{
-	ft_puterror(error);
-	exit (-42);
 }
 
 /*

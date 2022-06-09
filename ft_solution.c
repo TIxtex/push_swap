@@ -1,32 +1,32 @@
 #include "push_swap.h"
 
-void	ft_soladd(t_sol *solution, char *add)
+void	ft_soladd(t_smart_str *solution, char *add)
 {
 	char	*newsol;
 
 	newsol = ft_strjoin(solution->start, add);
 	free (solution->start);
 	solution->start = newsol;
-	solution->tam += ft_strlen(add);
+	solution->size += ft_strlen(add);
 }
 
-t_sol	*ft_solnew(void)
+t_smart_str	*ft_solnew(void)
 {
-	t_sol	*solution;
+	t_smart_str	*solution;
 
-	solution = (t_sol *)ft_calloc(TRUE, sizeof(t_sol));
+	solution = (t_smart_str *)ft_calloc(TRUE, sizeof(t_smart_str));
 	if (NULL != solution)
 	{
 		solution->start = (char *)ft_calloc(TRUE, sizeof(char));
 		if (NULL != solution->start)
-			solution->tam = ZERO;
+			solution->size = ZERO;
 		else
 			solution = soluton->start
 	}
 	return (solution);
 }
 
-void	ft_optimice_sol(t_sol *solution)
+void	ft_optimice_sol(t_smart_str *solution)
 {
 	ft_optimice_sol_0(solution, "sa\nsb", 's', 3);
 	ft_optimice_sol_0(solution, "sb\nsa", 's', 3);

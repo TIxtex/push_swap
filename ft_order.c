@@ -26,7 +26,7 @@ static int	ft_find_1(t_stack *stack, t_fragment *fragment)
 	return (-1);
 }
 
-static void	ft_2_step(t_sol *solution, t_stack *stack_a, t_stack *stack_b,
+static void	ft_2_step(t_smart_str *solution, t_stack *stack_a, t_stack *stack_b,
 			t_fragment *f)
 {
 	int			i;
@@ -55,7 +55,7 @@ static void	ft_2_step(t_sol *solution, t_stack *stack_a, t_stack *stack_b,
 	}
 }
 
-static void	ft_1_step(t_sol *solution, t_stack *stack_a, t_stack *stack_b)
+static void	ft_1_step(t_smart_str *solution, t_stack *stack_a, t_stack *stack_b)
 {
 	t_fragment	*fragment;
 	int			i;
@@ -84,7 +84,7 @@ static void	ft_1_step(t_sol *solution, t_stack *stack_a, t_stack *stack_b)
 	free(fragment);
 }
 
-void	ft_order_100(t_sol *solution, t_stack *stack_a)
+void	ft_order_100(t_smart_str *solution, t_stack *stack_a)
 {
 	t_stack	*stack_b;
 

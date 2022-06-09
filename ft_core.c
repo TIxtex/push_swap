@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-static void	ft_incrust_b_i_a(t_sol *solution,
+static void	ft_incrust_b_i_a(t_smart_str *solution,
 			t_stack *stack_a, t_stack *stack_b)
 {
 	int	i;
@@ -19,7 +19,7 @@ static void	ft_incrust_b_i_a(t_sol *solution,
 		ft_incrust_button_pa(solution, stack_a, stack_b, j);
 }
 
-static void	ft_order_3(t_sol *solution, t_stack *stack)
+static void	ft_order_3(t_smart_str *solution, t_stack *stack)
 {
 	if (stack->stack[1] > stack->stack[2])
 	{
@@ -42,7 +42,7 @@ static void	ft_order_3(t_sol *solution, t_stack *stack)
 		ft_m_s(solution, stack, "sa\n");
 }
 
-static void	ft_order_5(t_sol *solution, t_stack *stack_a)
+static void	ft_order_5(t_smart_str *solution, t_stack *stack_a)
 {
 	t_stack	*stack_b;
 
@@ -58,7 +58,7 @@ static void	ft_order_5(t_sol *solution, t_stack *stack_a)
 		ft_m_rr(solution, stack_a, "rra\n");
 }
 
-void	ft_core(t_stack *stack_a, t_sol *solution)
+void	ft_core(t_stack *stack_a, t_smart_str *solution)
 {
 	if (ft_isordered(stack_a) == 0)
 	{

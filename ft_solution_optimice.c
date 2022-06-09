@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	ft_optimice_sol_0(t_sol *solution, char *find, char put, int num)
+void	ft_optimice_sol_0(t_smart_str *solution, char *find, char put, int num)
 {
 	char	*i;
 	char	*aux;
@@ -18,7 +18,7 @@ void	ft_optimice_sol_0(t_sol *solution, char *find, char put, int num)
 	}
 }
 
-void	ft_optimice_sol_1(t_sol *solution, char *find, char put, int num)
+void	ft_optimice_sol_1(t_smart_str *solution, char *find, char put, int num)
 {
 	char	*i;
 	char	*aux;
@@ -36,7 +36,7 @@ void	ft_optimice_sol_1(t_sol *solution, char *find, char put, int num)
 	}
 }
 
-void	ft_optimice_sol_2(t_sol *solution, char *find, int num)
+void	ft_optimice_sol_2(t_smart_str *solution, char *find, int num)
 {
 	char	*i;
 	char	*aux;
@@ -53,7 +53,7 @@ void	ft_optimice_sol_2(t_sol *solution, char *find, int num)
 	}
 }
 
-void	ft_optimice_sol_3(t_sol *solution, char *find, char put, int num)
+void	ft_optimice_sol_3(t_smart_str *solution, char *find, char put, int num)
 {
 	char	*i;
 	char	*aux;
