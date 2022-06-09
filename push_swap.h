@@ -24,7 +24,7 @@ void	ft_have_dup(t_stack *stack);
 //void	ft_putstack(t_stack *stack, char s);//
 int		ft_condition(t_stack *stack_a, t_stack *stack_b, int i);
 int		ft_isordered(t_stack *stack);
-t_stack	*ft_reserve_stack(int tam);
+t_stack	*ft_reserve_stack(size_t tam);
 void	ft_colocate(t_smart_str *solution, t_stack *stack);
 // FT_ORDER.c
 void	ft_order_100(t_smart_str *solution, t_stack *stack_a);

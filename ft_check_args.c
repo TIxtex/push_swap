@@ -1,5 +1,4 @@
 #include "push_swap.h"
-#include <stdio.h>
 
 static void	ft_inrange(t_stack *stack, char *str, int i)
 {
@@ -12,7 +11,7 @@ static void	ft_inrange(t_stack *stack, char *str, int i)
 		stack->stack[i] = (int)num;
 }
 
-t_stack	*ft_reserve_stack(int tam)
+t_stack	*ft_reserve_stack(size_t tam)
 {
 	t_stack	*stack;
 

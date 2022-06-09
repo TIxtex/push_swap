@@ -33,7 +33,7 @@ void	ft_m_rr(t_smart_str *solution, t_stack *stack, char *add)
 	while (--i >= 0)
 		stack->stack[i + 1] = stack->stack[i];
 	stack->stack[0] = aux;
-	ft_smart_stradd(solution, add);
+	ft_soladd(solution, add);
 }
 
 void	ft_m_p1(t_smart_str *solution, t_stack *stack_1, t_stack *stack_2, char *add)
@@ -47,7 +47,7 @@ void	ft_m_p1(t_smart_str *solution, t_stack *stack_1, t_stack *stack_2, char *ad
 	i = -1;
 	while (++i < stack_2->tam - 1)
 		stack_2->stack[i] = stack_2->stack[i + 1];
-	ft_smart_stradd(solution, add);
+	ft_soladd(solution, add);
 	stack_1->tam++;
 	stack_2->tam--;
 }
