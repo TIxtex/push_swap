@@ -40,8 +40,8 @@ void	ft_m_rr(t_smart_str *solution, t_stack *stack, char *add);
 void	ft_m_p1(t_smart_str *solution, t_stack *stack_1, t_stack *stack_2, char *add);
 void	ft_up(t_smart_str *solution, t_stack *stack, int num, char *add);
 /**		FT_SOLUTION		**/
-t_smart_str	*ft_smart_strnew(void);
-void	ft_smart_stradd(t_smart_str *solution, char *add);
+t_smart_str	*ft_solnew(void);
+void	ft_soladd(t_smart_str *solution, char *add);
 void	ft_optimice_sol(t_smart_str *solution);
 void	ft_optimice_sol_3(t_smart_str *solution, char *find, char put, int num);
 void	ft_optimice_sol_2(t_smart_str *solution, char *find, int num);

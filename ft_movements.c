@@ -7,20 +7,20 @@ void	ft_m_s(t_smart_str *solution, t_stack *stack, char *add)
 	aux = stack->stack[0];
 	stack->stack[0] = stack->stack[1];
 	stack->stack[1] = aux;
-	ft_smart_stradd(solution, add);
+	ft_soladd(solution, add);
 }
 
 void	ft_m_r(t_smart_str *solution, t_stack *stack, char *add)
 {
-	int	aux;
-	int	i;
+	int		aux;
+	size_t	i;
 
 	aux = stack->stack[0];
 	i = -1;
 	while (++i < stack->tam - 1)
 		stack->stack[i] = stack->stack[i + 1];
 	stack->stack[stack->tam - 1] = aux;
-	ft_smart_stradd(solution, add);
+	ft_soladd(solution, add);
 }
 
 void	ft_m_rr(t_smart_str *solution, t_stack *stack, char *add)
