@@ -13,7 +13,7 @@
 NAME = $(NAMEM) $(NAMEB)
 NAMEM = push_swap
 NAMEB = checker
-CC = clang -std=c11
+CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 DEBUG = -fsanitize=address
 LIBFT = libft/libft.a
@@ -41,8 +41,7 @@ $(NAMEB): $(INCLUDE) $(LIBFT) $(OBJECTS)
 	$(CC) $(CFLAGS) $(LIBFT) $(OBJECTS) $(MAINB) -o $(NAMEB)
 
 $(LIBFT):
-	cd libft && make
-	cd .
+	make -C libft/
 	
 .PHONY: all clean fclean f re
 
@@ -50,8 +49,7 @@ all: $(NAME)
 clean:
 	/bin/rm -rf $(OBJECTS)
 	/bin/rm -rf $(OBJECTSB)
-	cd libft && make clean
-	cd ..
+	make clean -C libft/
 fclean: clean
 	/bin/rm -rf $(NAME)
 	/bin/rm -rf $(NAME2)
