@@ -1,6 +1,6 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# include "./libft/libft.h"
+# include "libft/libft.h"
 
 typedef struct s_fragment
 {
@@ -16,24 +16,24 @@ typedef struct s_stack
 	int			*stack;
 }				t_stack;
 
-/*		FT_CORE	*/
+// FT_CORE
 t_stack	*ft_check_args(int argc, char **argv);
 void	ft_core(t_stack *stack_a, t_smart_str *solution);
-/*		FT_TOOLS.c	*/
+// FT_TOOLS.c
 void	ft_have_dup(t_stack *stack);
 void	ft_putstack(t_stack *stack, char s);//
 int		ft_condition(t_stack *stack_a, t_stack *stack_b, int i);
 int		ft_isordered(t_stack *stack);
 t_stack	*ft_reserve_stack(size_t tam);
 void	ft_colocate(t_smart_str *solution, t_stack *stack);
-/*		FT_ORDER.c	*/
+// FT_ORDER.c
 void	ft_order_100(t_smart_str *solution, t_stack *stack_a);
 void	ft_incrust_a_i_b_r(t_smart_str *solution, t_stack *stack_a, t_stack *stack_b);
 void	ft_incrust_button_pa(t_smart_str *solution, t_stack *stack_a,
 			t_stack *stack_b, int num);
 void	ft_incrust_top_pa(t_smart_str *solution, t_stack *stack_a, t_stack *stack_b,
 			int num);
-/**		FT_MOVEMENTS.C	*/
+// FT_MOVEMENTS.C
 void	ft_m_s(t_smart_str *solution, t_stack *stack, char *add);
 void	ft_m_r(t_smart_str *solution, t_stack *stack, char *add);
 void	ft_m_rr(t_smart_str *solution, t_stack *stack, char *add);
