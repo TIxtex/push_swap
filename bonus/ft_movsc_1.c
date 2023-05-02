@@ -20,8 +20,8 @@ void	ft_mc_rrr(t_stack *stack_a, t_stack *stack_b)
 
 void	ft_c_up(t_stack *stack, int num)
 {
-	if (num > stack->tam / 2)
-		while (num++ < stack->tam)
+	if (num > (int) stack->tam / 2)
+		while (num++ < (int) stack->tam)
 			ft_mc_rr(stack);
 	else
 		while (num-- > 0)

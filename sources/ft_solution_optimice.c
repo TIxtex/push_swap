@@ -1,0 +1,72 @@
+#include "../push_swap.h"
+
+void	ft_optimice_sol_0(t_sol *solution, char *find, char put, int num)
+{
+	char	*i;
+	char	*aux;
+
+	i = ft_strnstr(solution->str, find, solution->size);
+	if (NULL != i && i[-1] != 'r')
+	{
+		i[1] = put;
+		i[2] = '\0';
+		aux = ft_strjoin(solution->str, &i[5]);
+		solution->size -= num;
+		free(solution->str);
+		solution->str = aux;
+		ft_optimice_sol_0(solution, find, put, num);
+	}
+}
+
+void	ft_optimice_sol_1(t_sol *solution, char *find, char put, int num)
+{
+	char	*i;
+	char	*aux;
+
+	i = ft_strnstr(solution->str, find, solution->size);
+	if (NULL != i)
+	{
+		i[2] = put;
+		i[3] = '\0';
+		aux = ft_strjoin(solution->str, &i[7]);
+		solution->size -= num;
+		free(solution->str);
+		solution->str = aux;
+		ft_optimice_sol_1(solution, find, put, num);
+	}
+}
+
+void	ft_optimice_sol_2(t_sol *solution, char *find, int num)
+{
+	char	*i;
+	char	*aux;
+
+	i = ft_strnstr(solution->str, find, solution->size);
+	if (NULL != i)
+	{
+		i[0] = '\0';
+		aux = ft_strjoin(solution->str, &i[6]);
+		solution->size -= num;
+		free(solution->str);
+		solution->str = aux;
+		ft_optimice_sol_2(solution, find, num);
+	}
+}
+
+void	ft_optimice_sol_3(t_sol *solution, char *find, char put, int num)
+{
+	char	*i;
+	char	*aux;
+
+	i = ft_strnstr(solution->str, find, solution->size);
+	if (NULL != i && i[-1] != 'r')
+	{
+		i[2] = put;
+		i[3] = '\0';
+		aux = ft_strjoin(solution->str, &i[6]);
+		solution->size -= num;
+		free(solution->str);
+		solution->str = aux;
+		ft_optimice_sol_3(solution, find, put, num);
+	}
+}

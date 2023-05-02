@@ -1,9 +1,9 @@
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	ft_have_dup(t_stack *stack)
 {
-	size_t	x;
-	size_t	y;
+	register size_t	x;
+	register size_t	y;
 
 	x = -1;
 	while (++x < stack->tam)
@@ -11,7 +11,7 @@ void	ft_have_dup(t_stack *stack)
 		y = x;
 		while (++y < stack->tam)
 			if (stack->stack[x] == stack->stack[y])
-				ft_error("Error, numeros duplicados.\n");
+				ft_puterror("Error, numeros duplicados.");
 	}
 }
 
@@ -22,7 +22,7 @@ int	ft_isordered(t_stack *stack)
 
 	i = -1;
 	flag = 1;
-	while (++i < stack->tam - 1 && flag)
+	while (++i < (int) stack->tam - 1 && flag)
 		if (stack->stack[i] > stack->stack[i + 1])
 			flag = 0;
 	if (flag)
@@ -35,7 +35,7 @@ int	ft_condition(t_stack *stack_a, t_stack *stack_b, int i)
 	if (0 == i && stack_a->stack[0] > stack_b->stack[0]
 		&& stack_a->stack[0] < stack_b->stack[stack_b->tam - 1])
 		return (0);
-	else if (stack_b->tam == i)
+	else if ((int) stack_b->tam == i)
 		return (0);
 	else if (0 != i && stack_a->stack[0] > stack_b->stack[i]
 		&& stack_a->stack[0] < stack_b->stack[i - 1])
@@ -49,20 +49,20 @@ int	ft_condition(t_stack *stack_a, t_stack *stack_b, int i)
 	return (1);
 }
 
-void	ft_colocate(t_smart_str *solution, t_stack *stack)
+void	ft_colocate(t_sol *solution, t_stack *stack)
 {
 	int	i;
 
 	i = 0;
-	while (i < stack->tam - 1 && stack->stack[i] > stack->stack[i + 1])
+	while (i < (int) stack->tam - 1 && stack->stack[i] > stack->stack[i + 1])
 		i++;
-	if (i != stack->tam - 1)
+	if (i != (int) stack->tam - 1)
 	{
-		if (i < stack->tam / 2)
+		if (i < (int) stack->tam / 2)
 			while (i-- > 0)
 				ft_m_r(solution, stack, "rb\n");
 		else
-			while (i++ < stack->tam - 1)
+			while (i++ < (int) stack->tam - 1)
 				ft_m_rr(solution, stack, "rrb\n");
 	}
 }

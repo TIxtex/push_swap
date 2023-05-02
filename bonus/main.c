@@ -2,7 +2,7 @@
 
 static void	ft_isordered2(t_stack *stack)
 {
-	int	i;
+	size_t	i;
 	int	flag;
 
 	i = -1;
@@ -48,7 +48,7 @@ int	main(int argc, char **argv)
 	t_stack	*stack_b;
 	char	*line;
 
-	stack_a = ft_check_arg(argc, argv);
+	stack_a = ft_check_args(argc, argv);
 	ft_have_dup(stack_a);
 	stack_b = ft_reserve_stack(stack_a->tam);
 	while (get_next_line(0, &line) > 0)
@@ -58,4 +58,5 @@ int	main(int argc, char **argv)
 	free(stack_b);
 	free(stack_a->stack);
 	free(stack_a);
+	return (42);
 }

@@ -13,21 +13,20 @@
 NAME = $(NAMEM) $(NAMEB)
 NAMEM = push_swap
 NAMEB = checker
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CC = gcc -std=c89
+CFLAGS = -Wall -Wextra -Werror -pedantic
 DEBUG = -fsanitize=address
-LIBFT = libft/libft.a
-INCLUDE = push_swap.h
+LIBFT = libft/libft_b.a
+INCLUDE = push_swap.h libft/libft.h bonus/checker.h
 MAINM = mandatory/main.c
 MAINB = bonus/main.c
 SOURCES = $(SOURCESM) $(SOURCESB)
 SOURCESM = \
-	ft_check_args.c \
-	ft_core.c \
-	ft_movements.c \
-	ft_order.c ft_order_aux.c \
-	ft_solution.c ft_solution_optimice.c \
-	ft_tools.c
+	sources/ft_check_args.c \
+	sources/ft_core.c \
+	sources/ft_movements.c \
+	sources/ft_order.c sources/ft_order_aux.c \
+	sources/ft_tools.c sources/get_next_line.c
 SOURCESB = \
 	bonus/ft_movsc_0.c bonus/ft_movsc_1.c
 OBJECTS = $(SOURCES:.c=.o)
@@ -35,13 +34,13 @@ OBJECTS = $(SOURCES:.c=.o)
 $(NAME): $(INCLUDE) $(LIBFT) $(OBJECTS)
 
 $(NAMEM): $(INCLUDE) $(LIBFT) $(OBJECTS)
-	$(CC) $(CFLAGS) $(LIBFT) $(OBJECTS) $(MAINM) -o $(NAMEM)
+	$(CC) $(CFLAGS) $(OBJECTS) $(MAINM) $(LIBFT) -o $(NAMEM)
 	
 $(NAMEB): $(INCLUDE) $(LIBFT) $(OBJECTS)
-	$(CC) $(CFLAGS) $(LIBFT) $(OBJECTS) $(MAINB) -o $(NAMEB)
+	$(CC) $(CFLAGS) $(OBJECTS) $(MAINB) $(LIBFT) -o $(NAMEB)
 
 $(LIBFT):
-	make -C libft/
+	make bonus -C libft/
 	
 .PHONY: all clean fclean f re
 

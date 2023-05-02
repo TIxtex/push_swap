@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "../push_swap.h"
 
 static int	ft_find_2(t_stack *stack, t_fragment *fragment)
 {
@@ -6,9 +6,9 @@ static int	ft_find_2(t_stack *stack, t_fragment *fragment)
 
 	i = stack->tam;
 	while (--i >= 0)
-		if (stack->stack[i] <= fragment->min + (fragment->tam
+		if (stack->stack[i] <= fragment->min + ((int) fragment->tam
 				* (fragment->phase + 1)) && fragment->min
-			+ (fragment->tam * fragment->phase) <= stack->stack[i])
+			+ ((int) fragment->tam * fragment->phase) <= stack->stack[i])
 			return (i);
 	return (-1);
 }	
@@ -18,15 +18,15 @@ static int	ft_find_1(t_stack *stack, t_fragment *fragment)
 	int	i;
 
 	i = -1;
-	while (++i < stack->tam)
-		if (stack->stack[i] <= fragment->min + (fragment->tam
-				* (fragment->phase + 1)) && fragment->min + (fragment->tam
+	while (++i < (int) stack->tam)
+		if (stack->stack[i] <= fragment->min + ((int) fragment->tam
+				* (fragment->phase + 1)) && fragment->min + ((int) fragment->tam
 				* fragment->phase) <= stack->stack[i])
 			return (i);
 	return (-1);
 }
 
-static void	ft_2_step(t_smart_str *solution, t_stack *stack_a, t_stack *stack_b,
+static void	ft_2_step(t_sol *solution, t_stack *stack_a, t_stack *stack_b,
 			t_fragment *f)
 {
 	int			i;
@@ -43,7 +43,7 @@ static void	ft_2_step(t_smart_str *solution, t_stack *stack_a, t_stack *stack_b,
 		j = ft_find_2(stack_a, f);
 		while (((-1) != i || (-1) != j) && stack_a->tam != 0)
 		{
-			if (i > (stack_a->tam - j))
+			if (i > ((int) stack_a->tam - j))
 				ft_up(solution, stack_a, j, "ra\n");
 			else
 				ft_up(solution, stack_a, i, "ra\n");
@@ -55,18 +55,18 @@ static void	ft_2_step(t_smart_str *solution, t_stack *stack_a, t_stack *stack_b,
 	}
 }
 
-static void	ft_1_step(t_smart_str *solution, t_stack *stack_a, t_stack *stack_b)
+static void	ft_1_step(t_sol *solution, t_stack *stack_a, t_stack *stack_b)
 {
 	t_fragment	*fragment;
 	int			i;
 
 	fragment = (t_fragment *)ft_calloc(1, sizeof(t_fragment));
 	if (fragment == NULL)
-		ft_error("Error, fallo en reserva de memoria.\n");
+		ft_puterror("Error, fallo en reserva de memoria.");
 	i = -1;
 	fragment->min = INT_MAX;
 	fragment->max = INT_MIN;
-	while (++i < stack_a->tam)
+	while (++i < (int) stack_a->tam)
 	{
 		if (stack_a->stack[i] < fragment->min)
 			fragment->min = stack_a->stack[i];
@@ -84,7 +84,7 @@ static void	ft_1_step(t_smart_str *solution, t_stack *stack_a, t_stack *stack_b)
 	free(fragment);
 }
 
-void	ft_order_100(t_smart_str *solution, t_stack *stack_a)
+void	ft_order_100(t_sol *solution, t_stack *stack_a)
 {
 	t_stack	*stack_b;
 

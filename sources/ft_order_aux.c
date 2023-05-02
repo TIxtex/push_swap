@@ -1,11 +1,8 @@
-#include "push_swap.h"
+#include "../push_swap.h"
 
-static void	ft_incrust_top(t_smart_str *solution, t_stack *stack_a, t_stack *stack_b,
+static void	ft_incrust_top(t_sol *solution, t_stack *stack_a, t_stack *stack_b,
 			int num)
 {
-	int	j;
-
-	j = num;
 	while (num > 1)
 	{
 		ft_m_r(solution, stack_b, "rb\n");
@@ -16,18 +13,15 @@ static void	ft_incrust_top(t_smart_str *solution, t_stack *stack_a, t_stack *sta
 		ft_m_s(solution, stack_b, "sb\n");
 }
 
-static void	ft_incrust_button(t_smart_str *solution,
+static void	ft_incrust_button(t_sol *solution,
 			t_stack *stack_a, t_stack *stack_b, int num)
 {
-	int	i;
-
-	i = num;
 	while (--num >= 0)
 		ft_m_rr(solution, stack_b, "rrb\n");
 	ft_m_p1(solution, stack_b, stack_a, "pb\n");
 }
 
-void	ft_incrust_top_pa(t_smart_str *solution, t_stack *stack_a, t_stack *stack_b,
+void	ft_incrust_top_pa(t_sol *solution, t_stack *stack_a, t_stack *stack_b,
 			int num)
 {
 	int	j;
@@ -48,7 +42,7 @@ void	ft_incrust_top_pa(t_smart_str *solution, t_stack *stack_a, t_stack *stack_b
 	}
 }
 
-void	ft_incrust_button_pa(t_smart_str *solution, t_stack *stack_a,
+void	ft_incrust_button_pa(t_sol *solution, t_stack *stack_a,
 			t_stack *stack_b, int num)
 {
 	int	i;
@@ -68,7 +62,7 @@ void	ft_incrust_button_pa(t_smart_str *solution, t_stack *stack_a,
 	}
 }
 
-void	ft_incrust_a_i_b_r(t_smart_str *solution, t_stack *stack_a, t_stack *stack_b)
+void	ft_incrust_a_i_b_r(t_sol *solution, t_stack *stack_a, t_stack *stack_b)
 {
 	int	i;
 	int	j;

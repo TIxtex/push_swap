@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "../push_swap.h"
 
 static void	ft_inrange(t_stack *stack, char *str, int i)
 {
@@ -6,7 +6,7 @@ static void	ft_inrange(t_stack *stack, char *str, int i)
 
 	num = (long) ft_atoi(str);
 	if (num < INT_MIN || num > INT_MAX)
-		ft_puterror("Excedido limite de integer.\n");
+		ft_puterror("Excedido limite de integer.");
 	else
 		stack->stack[i] = (int)num;
 }
@@ -15,7 +15,7 @@ t_stack	*ft_reserve_stack(size_t tam)
 {
 	t_stack	*stack;
 
-	stack = (t_stack *)malloc(TRUE * sizeof(t_stack));
+	stack = (t_stack *) malloc(TRUE * sizeof(t_stack));
 	if (NULL != stack)
 	{
 		stack->stack = (int *) ft_calloc(tam + 1, sizeof(int));
@@ -34,7 +34,7 @@ static t_stack	*ft_onearg(char *str)
 	i = -1;
 	while ('\0' != str[++i])
 		if (!ft_isdigit(str[i]) && !ft_isspace(str[i] && str[i] != '-'))
-			ft_puterror("caracteres especiales\n");
+			ft_puterror("Caracteres especiales");
 	split = ft_split(str, ' ');
 	i = ZERO;
 	while (NULL != split[i])
@@ -65,12 +65,12 @@ t_stack	*ft_check_args(int argc, char **argv)
 	{
 		x = -1;
 		stack = ft_reserve_stack(argc - 1);
-		while (++x < (size_t) argc - 1) //recorre argumentos
+		while (++x < (size_t) argc - 1) /*recorre argumentos*/
 		{
 			y = -1;
 			while (argv[x + 1][++y])
 				if (!ft_isdigit(argv[x + 1][y]) && (0 != y || argv[x + 1][0] != '-'))
-					ft_puterror("Caracteres especiales.\n");
+					ft_puterror("Caracteres especiales.");
 			ft_inrange(stack, argv[x + 1], x);
 		}
 		stack->tam = argc - 1;

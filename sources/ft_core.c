@@ -1,8 +1,6 @@
-#include "push_swap.h"
+#include "../push_swap.h"
 
-static void	ft_order_3(t_smart_str *solution, t_stack *stack);
-
-static void	ft_incrust_b_i_a(t_smart_str *solution, t_stack *a, t_stack *b)
+static void	ft_incrust_b_i_a(t_sol *solution, t_stack *a, t_stack *b)
 {
 	size_t	x;
 	size_t	y;
@@ -19,23 +17,7 @@ static void	ft_incrust_b_i_a(t_smart_str *solution, t_stack *a, t_stack *b)
 		ft_incrust_button_pa(solution, a, b, y);
 }
 
-static void	ft_order_5(t_smart_str *solution, t_stack *stack_a)
-{
-	t_stack	*stack_b;
-
-	stack_b = ft_reserve_stack(2);
-	while (stack_a->tam > 3)
-		ft_m_p1(solution, stack_b, stack_a, "pb\n");
-	ft_order_3(solution, stack_a);
-	while (stack_b->tam > ZERO)
-		ft_incrust_b_i_a(solution, stack_a, stack_b);
-	free(stack_b->stack);
-	free(stack_b);
-	while (stack_a->stack[0] > stack_a->stack[stack_a->tam - 1])
-		ft_m_rr(solution, stack_a, "rra\n");
-}
-
-static void	ft_order_3(t_smart_str *solution, t_stack *stack)
+static void	ft_order_3(t_sol *solution, t_stack *stack)
 {
 	int	*x;
 
@@ -59,7 +41,23 @@ static void	ft_order_3(t_smart_str *solution, t_stack *stack)
 		ft_m_s(solution, stack, "sa\n");
 }
 
-void	ft_core(t_stack *stack_a, t_smart_str *solution)
+static void	ft_order_5(t_sol *solution, t_stack *stack_a)
+{
+	t_stack	*stack_b;
+
+	stack_b = ft_reserve_stack(2);
+	while (stack_a->tam > 3)
+		ft_m_p1(solution, stack_b, stack_a, "pb\n");
+	ft_order_3(solution, stack_a);
+	while (stack_b->tam > ZERO)
+		ft_incrust_b_i_a(solution, stack_a, stack_b);
+	free(stack_b->stack);
+	free(stack_b);
+	while (stack_a->stack[0] > stack_a->stack[stack_a->tam - 1])
+		ft_m_rr(solution, stack_a, "rra\n");
+}
+
+void	ft_core(t_stack *stack_a, t_sol *solution)
 {
 	if (ZERO == ft_isordered(stack_a))
 	{
@@ -72,8 +70,12 @@ void	ft_core(t_stack *stack_a, t_smart_str *solution)
 		else if (5 < stack_a->tam)
 		{
 			ft_order_100(solution, stack_a);
-			ft_optimice_sol(solution);
+/*			ft_optimice_sol(solution);*/
 		}
-		write(STDOUT_FILENO, solution->str, solution->size);
+		while (NULL != solution)
+		{
+			write(STDOUT_FILENO, (char *) solution->content, ft_strlen((char *) solution->content));
+			solution = solution->next;
+		}
 	}
 }
