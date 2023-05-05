@@ -1,6 +1,6 @@
 #include "../push_swap.h"
 
-static void	ft_incrust_b_i_a(t_sol *solution, t_stack *a, t_stack *b)
+static void	ft_incrust_b_i_a(t_sol *solution, t_st *a, t_st *b)
 {
 	size_t	x;
 	size_t	y;
@@ -17,7 +17,7 @@ static void	ft_incrust_b_i_a(t_sol *solution, t_stack *a, t_stack *b)
 		ft_incrust_button_pa(solution, a, b, y);
 }
 
-static void	ft_order_3(t_sol *solution, t_stack *stack)
+static void	ft_order_3(t_sol *solution, t_st *stack)
 {
 	int	*x;
 
@@ -25,51 +25,51 @@ static void	ft_order_3(t_sol *solution, t_stack *stack)
 	if (x[1] > x[2])
 	{
 		if (x[0] < x[1] && x[0] > x[2])
-			ft_m_rr(solution, stack, "rra\n");
+			ft_m_rr(solution, stack, RRA);
 		else
 		{
-			ft_m_s(solution, stack, "sa\n");
+			ft_m_s(solution, stack, SA);
 			if (x[0] > x[1])
-				ft_m_r(solution, stack, "ra\n");
+				ft_m_r(solution, stack, RA);
 			else
-				ft_m_rr(solution, stack, "rra\n");
+				ft_m_rr(solution, stack, RRA);
 		}
 	}
 	else if (x[0] > x[2])
-		ft_m_r(solution, stack, "ra\n");
+		ft_m_r(solution, stack, RA);
 	else if (x[0] < x[2] && x[1] < x[0])
-		ft_m_s(solution, stack, "sa\n");
+		ft_m_s(solution, stack, SA);
 }
 
-static void	ft_order_5(t_sol *solution, t_stack *stack_a)
+static void	ft_order_5(t_sol *solution, t_st *st_a)
 {
-	t_stack	*stack_b;
+	t_st	*st_b;
 
-	stack_b = ft_reserve_stack(2);
-	while (stack_a->tam > 3)
-		ft_m_p1(solution, stack_b, stack_a, "pb\n");
-	ft_order_3(solution, stack_a);
-	while (stack_b->tam > ZERO)
-		ft_incrust_b_i_a(solution, stack_a, stack_b);
-	free(stack_b->stack);
-	free(stack_b);
-	while (stack_a->stack[0] > stack_a->stack[stack_a->tam - 1])
-		ft_m_rr(solution, stack_a, "rra\n");
+	st_b = ft_reserve_stack(2);
+	while (st_a->tam > 3)
+		ft_m_p1(solution, st_b, st_a, PB);
+	ft_order_3(solution, st_a);
+	while (st_b->tam > ZERO)
+		ft_incrust_b_i_a(solution, st_a, st_b);
+	free(st_b->stack);
+	free(st_b);
+	while (st_a->stack[0] > st_a->stack[st_a->tam - 1])
+		ft_m_rr(solution, st_a, RRA);
 }
 
-void	ft_core(t_stack *stack_a, t_sol *solution)
+void	ft_core(t_st *st_a, t_sol *solution)
 {
-	if (ZERO == ft_isordered(stack_a))
+	if (ZERO == ft_isordered(st_a))
 	{
-		if (2 == stack_a->tam && stack_a->stack[0] > stack_a->stack[1])
-			ft_m_s(solution, stack_a, "sa\n");
-		else if (3 == stack_a->tam)
-			ft_order_3(solution, stack_a);
-		else if (6 > stack_a->tam && 3 < stack_a->tam)
-			ft_order_5(solution, stack_a);
-		else if (5 < stack_a->tam)
+		if (2 == st_a->tam && st_a->stack[0] > st_a->stack[1])
+			ft_m_s(solution, st_a, SA);
+		else if (3 == st_a->tam)
+			ft_order_3(solution, st_a);
+		else if (6 > st_a->tam && 3 < st_a->tam)
+			ft_order_5(solution, st_a);
+		else if (5 < st_a->tam)
 		{
-			ft_order_100(solution, stack_a);
+			ft_order_100(solution, st_a);
 /*			ft_optimice_sol(solution);*/
 		}
 		while (NULL != solution)

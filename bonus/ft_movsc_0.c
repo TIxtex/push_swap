@@ -1,6 +1,6 @@
 #include "checker.h"
 
-void	ft_mc_s(t_stack *stack)
+void	ft_mc_s(t_st *stack)
 {
 	int	aux;
 
@@ -9,7 +9,7 @@ void	ft_mc_s(t_stack *stack)
 	stack->stack[1] = aux;
 }
 
-void	ft_mc_r(t_stack *stack)
+void	ft_mc_r(t_st *stack)
 {
 	int	aux;
 	size_t	i;
@@ -21,7 +21,7 @@ void	ft_mc_r(t_stack *stack)
 	stack->stack[stack->tam - 1] = aux;
 }
 
-void	ft_mc_rr(t_stack *stack)
+void	ft_mc_rr(t_st *stack)
 {
 	int	aux;
 	int	i;
@@ -33,32 +33,32 @@ void	ft_mc_rr(t_stack *stack)
 	stack->stack[0] = aux;
 }
 
-void	ft_mc_pa(t_stack *stack_a, t_stack *stack_b)
+void	ft_mc_pa(t_st *st_a, t_st *st_b)
 {
 	int	i;
 
-	i = stack_a->tam;
+	i = st_a->tam;
 	while (--i >= 0)
-		stack_a->stack[i + 1] = stack_a->stack[i];
-	stack_a->stack[0] = stack_b->stack[0];
+		st_a->stack[i + 1] = st_a->stack[i];
+	st_a->stack[0] = st_b->stack[0];
 	i = -1;
-	while (++i < (int) stack_b->tam - 1)
-		stack_b->stack[i] = stack_b->stack[i + 1];
-	stack_a->tam++;
-	stack_b->tam--;
+	while (++i < (int) st_b->tam - 1)
+		st_b->stack[i] = st_b->stack[i + 1];
+	st_a->tam++;
+	st_b->tam--;
 }
 
-void	ft_mc_pb(t_stack *stack_a, t_stack *stack_b)
+void	ft_mc_pb(t_st *st_a, t_st *st_b)
 {
 	int	i;
 
-	i = stack_b->tam;
+	i = st_b->tam;
 	while (--i >= 0)
-		stack_b->stack[i + 1] = stack_b->stack[i];
-	stack_b->stack[0] = stack_a->stack[0];
+		st_b->stack[i + 1] = st_b->stack[i];
+	st_b->stack[0] = st_a->stack[0];
 	i = -1;
-	while (++i < (int) stack_a->tam - 1)
-		stack_a->stack[i] = stack_a->stack[i + 1];
-	stack_a->tam--;
-	stack_b->tam++;
+	while (++i < (int) st_a->tam - 1)
+		st_a->stack[i] = st_a->stack[i + 1];
+	st_a->tam--;
+	st_b->tam++;
 }

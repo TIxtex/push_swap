@@ -1,24 +1,24 @@
 #include "checker.h"
 
-void	ft_mc_ss(t_stack *stack_a, t_stack *stack_b)
+void	ft_mc_ss(t_st *st_a, t_st *st_b)
 {
-	ft_mc_s(stack_a);
-	ft_mc_s(stack_b);
+	ft_mc_s(st_a);
+	ft_mc_s(st_b);
 }
 
-void	ft_mc_rr2(t_stack *stack_a, t_stack *stack_b)
+void	ft_mc_rr2(t_st *st_a, t_st *st_b)
 {
-	ft_mc_r(stack_a);
-	ft_mc_r(stack_b);
+	ft_mc_r(st_a);
+	ft_mc_r(st_b);
 }
 
-void	ft_mc_rrr(t_stack *stack_a, t_stack *stack_b)
+void	ft_mc_rrr(t_st *st_a, t_st *st_b)
 {
-	ft_mc_rr(stack_a);
-	ft_mc_rr(stack_b);
+	ft_mc_rr(st_a);
+	ft_mc_rr(st_b);
 }
 
-void	ft_c_up(t_stack *stack, int num)
+void	ft_c_up(t_st *stack, int num)
 {
 	if (num > (int) stack->tam / 2)
 		while (num++ < (int) stack->tam)

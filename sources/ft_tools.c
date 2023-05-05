@@ -1,6 +1,6 @@
 #include "../push_swap.h"
 
-void	ft_have_dup(t_stack *stack)
+void	ft_have_dup(t_st *stack)
 {
 	register size_t	x;
 	register size_t	y;
@@ -11,14 +11,14 @@ void	ft_have_dup(t_stack *stack)
 		y = x;
 		while (++y < stack->tam)
 			if (stack->stack[x] == stack->stack[y])
-				ft_puterror("Error, numeros duplicados.");
+				ft_puterror(ERR_6);
 	}
 }
 
-int	ft_isordered(t_stack *stack)
+int	ft_isordered(t_st *stack)
 {
-	int	i;
-	int	flag;
+	register int	i;
+	register int	flag;
 
 	i = -1;
 	flag = 1;
@@ -30,45 +30,45 @@ int	ft_isordered(t_stack *stack)
 	return (0);
 }
 
-int	ft_condition(t_stack *stack_a, t_stack *stack_b, int i)
+int	ft_condition(t_st *st_a, t_st *st_b, int i)
 {
-	if (0 == i && stack_a->stack[0] > stack_b->stack[0]
-		&& stack_a->stack[0] < stack_b->stack[stack_b->tam - 1])
+	if (0 == i && st_a->stack[0] > st_b->stack[0]
+		&& st_a->stack[0] < st_b->stack[st_b->tam - 1])
 		return (0);
-	else if ((int) stack_b->tam == i)
+	else if ((int) st_b->tam == i)
 		return (0);
-	else if (0 != i && stack_a->stack[0] > stack_b->stack[i]
-		&& stack_a->stack[0] < stack_b->stack[i - 1])
+	else if (0 != i && st_a->stack[0] > st_b->stack[i]
+		&& st_a->stack[0] < st_b->stack[i - 1])
 		return (0);
-	else if (0 != i && stack_b->stack[i] > stack_b->stack[i - 1])
-		if ((stack_a->stack[0] > stack_b->stack[i]
-				&& stack_a->stack[0] > stack_b->stack[i - 1])
-			|| (stack_a->stack[0] < stack_b->stack[i]
-				&& stack_a->stack[0] < stack_b->stack[i - 1]))
+	else if (0 != i && st_b->stack[i] > st_b->stack[i - 1])
+		if ((st_a->stack[0] > st_b->stack[i]
+				&& st_a->stack[0] > st_b->stack[i - 1])
+			|| (st_a->stack[0] < st_b->stack[i]
+				&& st_a->stack[0] < st_b->stack[i - 1]))
 			return (0);
 	return (1);
 }
 
-void	ft_colocate(t_sol *solution, t_stack *stack)
+void	ft_colocate(t_sol *solution, t_st *stack)
 {
-	int	i;
+	register int	i;
 
-	i = 0;
+	i = ZERO;
 	while (i < (int) stack->tam - 1 && stack->stack[i] > stack->stack[i + 1])
 		i++;
 	if (i != (int) stack->tam - 1)
 	{
 		if (i < (int) stack->tam / 2)
-			while (i-- > 0)
-				ft_m_r(solution, stack, "rb\n");
+			while (i-- > ZERO)
+				ft_m_r(solution, stack, RB);
 		else
 			while (i++ < (int) stack->tam - 1)
-				ft_m_rr(solution, stack, "rrb\n");
+				ft_m_rr(solution, stack, RRB);
 	}
 }
 
 /*
-void	ft_putstack(t_stack *stack, char s)
+void	ft_putstack(t_st *stack, char s)
 {
 	int		i;
 

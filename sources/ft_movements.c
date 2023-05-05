@@ -1,6 +1,6 @@
 #include "../push_swap.h"
 
-void	ft_m_s(t_sol *solution, t_stack *stack, char *add)
+void	ft_m_s(t_sol *solution, t_st *stack, char *add)
 {
 	int		aux;
 	t_list	*new;
@@ -10,11 +10,11 @@ void	ft_m_s(t_sol *solution, t_stack *stack, char *add)
 	stack->stack[1] = aux;
 	new = ft_lstnew((void *) add);
 	if (NULL == new)
-		ft_puterror("Allocando solucion");
+		ft_puterror(ERR_4);
 	ft_lstadd_back(&solution, new);
 }
 
-void	ft_m_r(t_sol *solution, t_stack *stack, char *add)
+void	ft_m_r(t_sol *solution, t_st *stack, char *add)
 {
 	int		aux;
 	size_t	i;
@@ -27,11 +27,11 @@ void	ft_m_r(t_sol *solution, t_stack *stack, char *add)
 	stack->stack[stack->tam - 1] = aux;
 	new = ft_lstnew((void *) add);
 	if (NULL == new)
-		ft_puterror("Allocando solucion");
+		ft_puterror(ERR_4);
 	ft_lstadd_back(&solution, new);
 }
 
-void	ft_m_rr(t_sol *solution, t_stack *stack, char *add)
+void	ft_m_rr(t_sol *solution, t_st *stack, char *add)
 {
 	int	aux;
 	int	i;
@@ -44,11 +44,11 @@ void	ft_m_rr(t_sol *solution, t_stack *stack, char *add)
 	stack->stack[0] = aux;
 	new = ft_lstnew((void *) add);
 	if (NULL == new)
-		ft_puterror("Allocando solucion");
+		ft_puterror(ERR_4);
 	ft_lstadd_back(&solution, new);
 }
 
-void	ft_m_p1(t_sol *solution, t_stack *stack_1, t_stack *stack_2, char *add)
+void	ft_m_p1(t_sol *solution, t_st *stack_1, t_st *stack_2, char *add)
 {
 	int	i;
 	t_list	*new;
@@ -62,23 +62,22 @@ void	ft_m_p1(t_sol *solution, t_stack *stack_1, t_stack *stack_2, char *add)
 		stack_2->stack[i] = stack_2->stack[i + 1];
 	new = ft_lstnew((void *) add);
 	if (NULL == new)
-		ft_puterror("Allocando solucion");
+		ft_puterror(ERR_4);
 	ft_lstadd_back(&solution, new);
 	stack_1->tam++;
 	stack_2->tam--;
 }
 
-void	ft_up(t_sol *solution, t_stack *stack, int num, char *add)
+void	ft_up(t_sol *solution, t_st *stack, int num, char *add)
 {
-	char	*print;
-
 	if ((size_t) num > stack->tam / 2)
 	{
 		while ((size_t) num++ < stack->tam)
 		{
-			print = ft_strjoin("r", add);
-			ft_m_rr(solution, stack, print);
-			free(print);
+			if (!ft_strncmp(add, RA, 3))
+				ft_m_rr(solution, stack, RRA);
+			else /*(RB == add)*/
+				ft_m_rr(solution, stack, RRB);
 		}
 	}
 	else

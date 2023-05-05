@@ -2,26 +2,26 @@
 
 void	del(void	*to_del)
 {
-	free((char *)to_del);
+	free((char *) to_del);
 	to_del = NULL;
 }
 
 int	main(int argc, char **argv)
 {
-	t_stack	*stack_a;
+	t_st	*st_a;
 	t_sol	*solution;
 
-	stack_a = ft_check_args(argc, argv);
-	if (NULL == stack_a)
-		ft_puterror("Allocando stack");
-	ft_have_dup(stack_a);
+	st_a = ft_check_args(argc, argv);
+	if (NULL == st_a)
+		ft_puterror(ERR_0);
+	ft_have_dup(st_a);
 	solution = ft_lstnew("");
 	if (NULL == solution)
-		ft_puterror("Allocando solución");
-	ft_core(stack_a, solution);
+		ft_puterror(ERR_0);
+	ft_core(st_a, solution);
 	ft_lstclear(&solution, NULL);
-	free(stack_a->stack);
-	free(stack_a);
+	free(st_a->stack);
+	free(st_a);
 	return (ZERO);
 }
 
