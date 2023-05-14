@@ -12,22 +12,28 @@
 
 #include "../push_swap.h"
 
-void	ft_optimice_sol_0(t_sol *solution, char *find, char put, int num)
+void 	ft_lst_ss()
 {
-	char	*i;
-	char	*aux;
 
-	i = ft_strnstr(solution->str, find, solution->size);
-	if (NULL != i && i[-1] != 'r')
+}
+
+void	ft_optimice_sol_s(t_sol *solution)
+{
+	t_sol	*aux;
+
+	while (NULL != solution->next)
 	{
-		i[1] = put;
-		i[2] = '\0';
-		aux = ft_strjoin(solution->str, &i[5]);
-		solution->size -= num;
-		free(solution->str);
-		solution->str = aux;
-		ft_optimice_sol_0(solution, find, put, num);
+		if (&SA == &solution->content)
+		{
+		
+		}
+		else if (&SB == &solution->content)
+		{
+		
+		}
+		solution = solution->next;
 	}
+
 }
 
 void	ft_optimice_sol_1(t_sol *solution, char *find, char put, int num)
