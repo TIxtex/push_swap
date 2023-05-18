@@ -82,7 +82,7 @@ void	ft_core(t_st *st_a, t_sol *solution)
 		else if (5 < st_a->tam)
 		{
 			ft_order_100(solution, st_a);
-/*			ft_optimice_sol(solution);*/
+			ft_optimice_sol(solution);
 		}
 		while (NULL != solution)
 		{

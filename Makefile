@@ -26,7 +26,8 @@ SOURCESM = \
 	sources/ft_core.c \
 	sources/ft_movements.c \
 	sources/ft_order.c sources/ft_order_aux.c \
-	sources/ft_tools.c sources/get_next_line.c
+	sources/ft_tools.c sources/get_next_line.c \
+	sources/ft_solution.c
 SOURCESB = \
 	bonus/ft_movsc_0.c bonus/ft_movsc_1.c
 OBJECTS = $(SOURCES:.c=.o)
@@ -55,4 +56,3 @@ fclean: clean
 	/bin/rm -rf $(LIBFT)
 re: fclean all
 f: fclean
-	

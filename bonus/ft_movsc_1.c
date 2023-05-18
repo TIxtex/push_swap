@@ -36,6 +36,6 @@ void	ft_c_up(t_st *stack, int num)
 		while (num++ < (int) stack->tam)
 			ft_mc_rr(stack);
 	else
-		while (num-- > 0)
+		while (num-- > ZERO)
 			ft_mc_r(stack);
 }

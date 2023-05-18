@@ -15,67 +15,67 @@
 void	ft_m_s(t_sol *solution, t_st *stack, char *add)
 {
 	int		aux;
-	t_list	*new;
+	t_sol	*new;
 
-	aux = stack->stack[0];
-	stack->stack[0] = stack->stack[1];
+	aux = stack->stack[ZERO];
+	stack->stack[ZERO] = stack->stack[1];
 	stack->stack[1] = aux;
-	new = ft_lstnew((void *) add);
+	new = ft_lstnew_d((void *) add);
 	if (NULL == new)
 		ft_puterror(ERR_4);
-	ft_lstadd_back(&solution, new);
+	ft_lstadd_back_d(&solution, &new);
 }
 
 void	ft_m_r(t_sol *solution, t_st *stack, char *add)
 {
 	int		aux;
 	size_t	i;
-	t_list	*new;
+	t_sol	*new;
 
-	aux = stack->stack[0];
+	aux = stack->stack[ZERO];
 	i = -1;
 	while (++i < stack->tam - 1)
 		stack->stack[i] = stack->stack[i + 1];
 	stack->stack[stack->tam - 1] = aux;
-	new = ft_lstnew((void *) add);
+	new = ft_lstnew_d((void *) add);
 	if (NULL == new)
 		ft_puterror(ERR_4);
-	ft_lstadd_back(&solution, new);
+	ft_lstadd_back_d(&solution, &new);
 }
 
 void	ft_m_rr(t_sol *solution, t_st *stack, char *add)
 {
 	int	aux;
 	int	i;
-	t_list	*new;
+	t_sol	*new;
 
 	aux = stack->stack[stack->tam - 1];
 	i = stack->tam - 1;
-	while (--i >= 0)
+	while (--i >= ZERO)
 		stack->stack[i + 1] = stack->stack[i];
-	stack->stack[0] = aux;
-	new = ft_lstnew((void *) add);
+	stack->stack[ZERO] = aux;
+	new = ft_lstnew_d((void *) add);
 	if (NULL == new)
 		ft_puterror(ERR_4);
-	ft_lstadd_back(&solution, new);
+	ft_lstadd_back_d(&solution, &new);
 }
 
 void	ft_m_p1(t_sol *solution, t_st *stack_1, t_st *stack_2, char *add)
 {
 	int	i;
-	t_list	*new;
+	t_sol	*new;
 
 	i = stack_1->tam;
-	while (--i >= 0)
+	while (--i >= ZERO)
 		stack_1->stack[i + 1] = stack_1->stack[i];
-	stack_1->stack[0] = stack_2->stack[0];
+	stack_1->stack[0] = stack_2->stack[ZERO];
 	i = -1;
 	while ((size_t) ++i < stack_2->tam - 1)
 		stack_2->stack[i] = stack_2->stack[i + 1];
-	new = ft_lstnew((void *) add);
+	new = ft_lstnew_d((void *) add);
 	if (NULL == new)
 		ft_puterror(ERR_4);
-	ft_lstadd_back(&solution, new);
+	ft_lstadd_back_d(&solution, &new);
 	stack_1->tam++;
 	stack_2->tam--;
 }

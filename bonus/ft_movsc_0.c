@@ -65,9 +65,9 @@ void	ft_mc_pb(t_st *st_a, t_st *st_b)
 	int	i;
 
 	i = st_b->tam;
-	while (--i >= 0)
+	while (--i >= ZERO)
 		st_b->stack[i + 1] = st_b->stack[i];
-	st_b->stack[0] = st_a->stack[0];
+	st_b->stack[ZERO] = st_a->stack[ZERO];
 	i = -1;
 	while (++i < (int) st_a->tam - 1)
 		st_a->stack[i] = st_a->stack[i + 1];

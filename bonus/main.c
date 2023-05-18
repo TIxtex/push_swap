@@ -21,8 +21,8 @@ static void	ft_isordered2(t_st *stack)
 	flag = 1;
 	while (++i < stack->tam - 1 && flag)
 		if (stack->stack[i] > stack->stack[i + 1])
-			flag = 0;
-	if (flag == 0)
+			flag = ZERO;
+	if (flag == ZERO)
 		write(STDOUT_FILENO, "KO\n", 3);
 	else
 		write(STDOUT_FILENO, "OK\n", 3);

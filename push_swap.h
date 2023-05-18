@@ -22,6 +22,9 @@
 # define SB "sb\n"
 # define RB "rb\n"
 # define RRB "rrb\n"
+# define SS "ss\n"
+# define RR "rr\n"
+# define RRR "rrr\n"
 
 # ifndef ERRORS_LIST
 #  define ERRORS_LIST
@@ -35,7 +38,7 @@
 #  define ERR_X "Me das asco por probar esto que lo sepas"
 # endif
 
-typedef struct s_list t_sol;
+typedef struct s_list_d t_sol;
 
 typedef struct s_fragment
 {
@@ -75,12 +78,7 @@ void	ft_m_p1(t_sol *solution, t_st *stack_1, t_st *stack_2, char *add);
 void	ft_up(t_sol *solution, t_st *stack, int num, char *add);
 
 /**		FT_SOLUTION		**/
-t_sol	*ft_solnew(void);
 void	ft_soladd(t_sol *solution, char *add);
 void	ft_optimice_sol(t_sol *solution);
-void	ft_optimice_sol_3(t_sol *solution, char *find, char put, int num);
-void	ft_optimice_sol_2(t_sol *solution, char *find, int num);
-void	ft_optimice_sol_1(t_sol *solution, char *find, char put, int num);
-void	ft_optimice_sol_0(t_sol *solution, char *find, char put, int num);
 
 #endif

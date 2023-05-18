@@ -27,11 +27,11 @@ int	main(int argc, char **argv)
 	if (NULL == st_a)
 		ft_puterror(ERR_0);
 	ft_have_dup(st_a);
-	solution = ft_lstnew("");
+	solution = (t_sol *)ft_lstnew_d("");
 	if (NULL == solution)
 		ft_puterror(ERR_0);
 	ft_core(st_a, solution);
-	ft_lstclear(&solution, NULL);
+	ft_lstclear((t_list **) &solution, NULL);
 	free(st_a->stack);
 	free(st_a);
 	return (ZERO);
