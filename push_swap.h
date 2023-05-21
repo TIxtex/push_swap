@@ -55,30 +55,31 @@ typedef struct s_stack
 }				t_st;
 
 /**	FT_CORE	**/
-t_st	*ft_check_args(int argc, char **argv);
-void	ft_core(t_st *stack_a, t_sol *solution);
+t_st	*check_args(int argc, char **argv);
+void	core(t_st *stack_a, t_sol *solution);
 /**	FT_TOOLS.c	**/
-void	ft_have_dup(t_st *stack);
+void	have_dup(t_st *stack);
+void	copy_stack(t_st *st_source, t_st **st_destiny);
 /*void	ft_putstack(t_st *stack, char s);*/
-int		ft_condition(t_st *stack_a, t_st *stack_b, int i);
-int		ft_isordered(t_st *stack);
-t_st	*ft_reserve_stack(size_t tam);
-void	ft_colocate(t_sol *solution, t_st *stack);
+int		condition(t_st *stack_a, t_st *stack_b, int i);
+int		isordered(t_st *stack);
+t_st	*reserve_stack(size_t tam);
+void	colocate(t_sol *solution, t_st *stack);
 int		get_next_line(int fd, char **line);
 /**	FT_ORDER.c	**/
-void	ft_order_100(t_sol *solution, t_st *stack_a);
-void	ft_incrust_a_i_b_r(t_sol *solution, t_st *stack_a, t_st *stack_b);
-void	ft_incrust_button_pa(t_sol *solution, t_st *stack_a, t_st *stack_b, int num);
-void	ft_incrust_top_pa(t_sol *solution, t_st *stack_a, t_st *stack_b, int num);
+void	order_100(t_sol *solution, t_st *stack_a);
+void	incrust_a_i_b_r(t_sol *solution, t_st *stack_a, t_st *stack_b);
+void	incrust_button_pa(t_sol *solution, t_st *stack_a, t_st *stack_b, int num);
+void	incrust_top_pa(t_sol *solution, t_st *stack_a, t_st *stack_b, int num);
 /**	FT_MOVEMENTS.C	**/
-void	ft_m_s(t_sol *solution, t_st *stack, char *add);
-void	ft_m_r(t_sol *solution, t_st *stack, char *add);
-void	ft_m_rr(t_sol *solution, t_st *stack, char *add);
-void	ft_m_p1(t_sol *solution, t_st *stack_1, t_st *stack_2, char *add);
-void	ft_up(t_sol *solution, t_st *stack, int num, char *add);
+void	m_s(t_sol *solution, t_st *stack, char *add);
+void	m_r(t_sol *solution, t_st *stack, char *add);
+void	m_rr(t_sol *solution, t_st *stack, char *add);
+void	m_p1(t_sol *solution, t_st *stack_1, t_st *stack_2, char *add);
+void	m_up(t_sol *solution, t_st *stack, int num, char *add);
 
 /**		FT_SOLUTION		**/
-void	ft_soladd(t_sol *solution, char *add);
-void	ft_optimice_sol(t_sol *solution);
+void	soladd(t_sol *solution, char *add);
+void	optimice_sol(t_sol *solution);
 
 #endif

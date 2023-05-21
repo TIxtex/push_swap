@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-void	ft_m_s(t_sol *solution, t_st *stack, char *add)
+void	m_s(t_sol *solution, t_st *stack, char *add)
 {
 	int		aux;
 	t_sol	*new;
@@ -26,7 +26,7 @@ void	ft_m_s(t_sol *solution, t_st *stack, char *add)
 	ft_lstadd_back_d(&solution, &new);
 }
 
-void	ft_m_r(t_sol *solution, t_st *stack, char *add)
+void	m_r(t_sol *solution, t_st *stack, char *add)
 {
 	int		aux;
 	size_t	i;
@@ -43,7 +43,7 @@ void	ft_m_r(t_sol *solution, t_st *stack, char *add)
 	ft_lstadd_back_d(&solution, &new);
 }
 
-void	ft_m_rr(t_sol *solution, t_st *stack, char *add)
+void	m_rr(t_sol *solution, t_st *stack, char *add)
 {
 	int	aux;
 	int	i;
@@ -60,7 +60,7 @@ void	ft_m_rr(t_sol *solution, t_st *stack, char *add)
 	ft_lstadd_back_d(&solution, &new);
 }
 
-void	ft_m_p1(t_sol *solution, t_st *stack_1, t_st *stack_2, char *add)
+void	m_p1(t_sol *solution, t_st *stack_1, t_st *stack_2, char *add)
 {
 	int	i;
 	t_sol	*new;
@@ -80,19 +80,19 @@ void	ft_m_p1(t_sol *solution, t_st *stack_1, t_st *stack_2, char *add)
 	stack_2->tam--;
 }
 
-void	ft_up(t_sol *solution, t_st *stack, int num, char *add)
+void	m_up(t_sol *solution, t_st *stack, int num, char *add)
 {
 	if ((size_t) num > stack->tam / 2)
 	{
 		while ((size_t) num++ < stack->tam)
 		{
 			if (!ft_strncmp(add, RA, 3))
-				ft_m_rr(solution, stack, RRA);
+				m_rr(solution, stack, RRA);
 			else /*(RB == add)*/
-				ft_m_rr(solution, stack, RRB);
+				m_rr(solution, stack, RRB);
 		}
 	}
 	else
 		while (num-- > 0)
-			ft_m_r(solution, stack, add);
+			m_r(solution, stack, add);
 }

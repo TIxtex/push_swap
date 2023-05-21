@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-void	ft_have_dup(t_st *stack)
+void	have_dup(t_st *stack)
 {
 	register size_t	x;
 	register size_t	y;
@@ -27,7 +27,7 @@ void	ft_have_dup(t_st *stack)
 	}
 }
 
-int	ft_isordered(t_st *stack)
+int	isordered(t_st *stack)
 {
 	register int	i;
 	register int	flag;
@@ -42,7 +42,7 @@ int	ft_isordered(t_st *stack)
 	return (0);
 }
 
-int	ft_condition(t_st *st_a, t_st *st_b, int i)
+int	condition(t_st *st_a, t_st *st_b, int i)
 {
 	if (0 == i && st_a->stack[0] > st_b->stack[0]
 		&& st_a->stack[0] < st_b->stack[st_b->tam - 1])
@@ -61,7 +61,7 @@ int	ft_condition(t_st *st_a, t_st *st_b, int i)
 	return (1);
 }
 
-void	ft_colocate(t_sol *solution, t_st *stack)
+void	colocate(t_sol *solution, t_st *stack)
 {
 	register int	i;
 
@@ -72,11 +72,21 @@ void	ft_colocate(t_sol *solution, t_st *stack)
 	{
 		if (i < (int) stack->tam / 2)
 			while (i-- > ZERO)
-				ft_m_r(solution, stack, RB);
+				m_r(solution, stack, RB);
 		else
 			while (i++ < (int) stack->tam - 1)
-				ft_m_rr(solution, stack, RRB);
+				m_rr(solution, stack, RRB);
 	}
+}
+
+void	copy_stack(t_st *st_source, t_st **st_destiny)
+{
+	register int	i;
+
+	i = st_source->tam;
+	(*st_destiny)->tam = (size_t) i;
+	while (i-- > ZERO)
+		(*st_destiny)->stack[i] = st_source->stack[i];
 }
 
 /*

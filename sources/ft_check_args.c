@@ -12,35 +12,51 @@
 
 #include "../push_swap.h"
 
-static void	ft_inrange(t_st *stack, char *str, int i)
+static void	inrange(t_st *stack, char *str, int i)
 {
 	register long	num;
 
-	num = (long) ft_atoi(str);
+	num = ZERO;
+	if ('-' == *str || '+' == *str)
+	{
+		num++;
+		str++;
+	}
+	while (ft_isdigit(*str) && *str)
+	{
+		str++;
+		num++;
+	}
+	if (12 < num)
+		ft_puterror(ERR_2);
+	str -= num;
+	num = ft_atol(str);
 	if (num < INT_MIN || num > INT_MAX)
 		ft_puterror(ERR_2);
 	else if (ZERO == num && !ft_strncmp(str, "-", 2))
 		ft_puterror(ERR_X);
 	else
-		stack->stack[i] = (int)num;
+		stack->stack[i] = (int) num;
 
 }
 
-t_st	*ft_reserve_stack(size_t tam)
+t_st	*reserve_stack(size_t tam)
 {
 	t_st	*stack;
 
-	stack = (t_st *) malloc(TRUE * sizeof(t_st));
+	stack = (t_st *) malloc(sizeof(t_st));
 	if (NULL != stack)
 	{
 		stack->stack = (int *) ft_calloc(tam + 1, sizeof(int));
 		if (NULL == stack->stack)
 			stack = (t_st *) stack->stack;
+		else
+			stack->tam = ZERO;
 	}
 	return (stack);
 }
 
-static t_st	*ft_onearg(char *str)
+static t_st	*one_arg(char *str)
 {
 	t_st	*stack;
 	char	**split;
@@ -54,10 +70,10 @@ static t_st	*ft_onearg(char *str)
 	i = ZERO;
 	while (NULL != split[i])
 		i++;
-	stack = ft_reserve_stack(i);
+	stack = reserve_stack(i);
 	i = -1;
 	while (NULL != split[++i])
-		ft_inrange(stack, split[i], i);
+		inrange(stack, split[i], i);
 	stack->tam = i;
 	i = ZERO;
 	while (i < stack->tam)
@@ -66,7 +82,7 @@ static t_st	*ft_onearg(char *str)
 	return (stack);
 }
 
-t_st	*ft_check_args(int argc, char **argv)
+t_st	*check_args(int argc, char **argv)
 {
 	register size_t	x;
 	register size_t	y;
@@ -75,18 +91,18 @@ t_st	*ft_check_args(int argc, char **argv)
 	if (argc < 2)
 		ft_puterror(ERR_1);
 	if (argc == 2)
-		stack = ft_onearg(argv[1]);
+		stack = one_arg(argv[1]);
 	else
 	{
 		x = -1;
-		stack = ft_reserve_stack(argc - 1);
+		stack = reserve_stack(argc - 1);
 		while (++x < (size_t) argc - 1) /*recorre argumentos*/
 		{
 			y = -1;
 			while (argv[x + 1][++y])
 				if (!ft_isdigit(argv[x + 1][y]) && (0 != y || argv[x + 1][0] != '-'))
 					ft_puterror(ERR_3);
-			ft_inrange(stack, argv[x + 1], x);
+			inrange(stack, argv[x + 1], x);
 		}
 		stack->tam = argc - 1;
 	}
