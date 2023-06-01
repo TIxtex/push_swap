@@ -16,12 +16,21 @@ static int	find_2(t_st *stack, t_fragment *fragment)
 {
 	register int	i;
 
-	i = stack->tam;
-	while (--i >= 0)
-		if (stack->stack[i] <= fragment->min + ((int) fragment->tam
+	i = 1;
+	while (NULL != stack->next)
+	{
+		++i;
+		stack = stack->next;
+	}
+	while (NULL != stack)
+	{
+		--i;
+		if (stack->content <= fragment->min + ((int) fragment->tam
 				* (fragment->phase + 1)) && fragment->min
-			+ ((int) fragment->tam * fragment->phase) <= stack->stack[i])
+				+ ((int) fragment->tam * fragment->phase) <= stack->content)
 			return (i);
+		stack = stack->prev;
+	}
 	return (-1);
 }	
 
@@ -30,11 +39,15 @@ static int	find_1(t_st *stack, t_fragment *fragment)
 	register int	i;
 
 	i = -1;
-	while (++i < (int) stack->tam)
-		if (stack->stack[i] <= fragment->min + ((int) fragment->tam
-				* (fragment->phase + 1)) && fragment->min + ((int) fragment->tam
-				* fragment->phase) <= stack->stack[i])
+	while (NULL != stack)
+	{
+		++i;
+		if (stack->content <= fragment->min + ((int) fragment->tam 
+				* (fragment->phase + 1)) && fragment->min
+				+ ((int) fragment->tam * fragment->phase) <= stack->content)
 			return (i);
+		stack = stack->next;
+	}
 	return (-1);
 }
 
@@ -43,18 +56,20 @@ static void	step_2(t_sol *solution, t_st *st_a, t_st *st_b, t_fragment *f)
 	register int			i;
 	register int			j;
 	register int			flag;
+	register int			tam;
 
-	if (st_a->tam > 100)
+	tam = ft_lstsize(st_a);
+	if (tam > 100)
 		flag = 14;
 	else
 		flag = 6;
-	while (f->phase < flag && st_a->tam != 0)
+	while (f->phase < flag && tam != 0)
 	{
 		i = find_1(st_a, f);
 		j = find_2(st_a, f);
-		while (((-1) != i || (-1) != j) && st_a->tam != 0)
+		while (((-1) != i || (-1) != j) && tam != 0)
 		{
-			if (i > ((int) st_a->tam - j))
+			if (i > (tam - j))
 				m_up(solution, st_a, j, RA);
 			else
 				m_up(solution, st_a, i, RA);
@@ -69,26 +84,27 @@ static void	step_2(t_sol *solution, t_st *st_a, t_st *st_b, t_fragment *f)
 static void	step_1(t_sol *solution, t_st *st_a, t_st *st_b, size_t iterator)
 {
 	t_fragment		*fragment;
-	register int	i;
+	t_st			*aux;
 
-	fragment = (t_fragment *)ft_calloc(1, sizeof(t_fragment));
+	fragment = (t_fragment *) ft_calloc(1, sizeof(t_fragment));
 	if (fragment == NULL)
 		ft_puterror(ERR_5);
-	i = -1;
 	fragment->min = INT_MAX;
 	fragment->max = INT_MIN;
-	while (++i < (int) st_a->tam)
+	aux = st_a;
+	while (NULL != aux)
 	{
-		if (st_a->stack[i] < fragment->min)
-			fragment->min = st_a->stack[i];
-		if (st_a->stack[i] > fragment->max)
-			fragment->max = st_a->stack[i];
+		if (aux->content < fragment->min)
+			fragment->min = aux->content;
+		if (st_a->content > fragment->max)
+			fragment->max = aux->content;
+		aux = aux->next;
 	}
 	fragment->tam = ((fragment->max - fragment->min) / iterator) + 1;
 	step_2(solution, st_a, st_b, fragment);
 	colocate(solution, st_b);
-	while (st_b->tam != 0)
-		m_p1(solution, st_a, st_b, PA);
+	while (NULL != st_b)
+		m_p1(solution, &st_a, &st_b, PA);
 	free(fragment);
 }
 
@@ -99,17 +115,16 @@ void	order_100(t_sol *solution, t_st *st_a)
 	size_t	i;
 /* 	int		solution_tam; */
 
-	i = 6;
+	if (ft_lstsize(st_a) > 100)
+		i = 14;
+	else
+		i = 6;
 /*	while (++i <= st_a->tam * 5)
 	{*/
-		st_b = reserve_stack(st_a->tam);
-		st_aux = reserve_stack(st_a->tam);
 		copy_stack(st_a, &st_aux);
 		step_1(solution, st_aux, st_b, i);
-		free(st_aux->stack);
-		free(st_aux);
-		free(st_b->stack);
-		free(st_b);
+		ft_lstclear(st_aux, NULL);
+		ft_lstclear(st_b, NULL);
 		optimice_sol(solution);
 /* 		solution_tam = ft_lstsize((t_list *) solution);
 		ft_putnbr_fd(solution_tam, 1);ft_putstr_fd("<- tam	", 1);

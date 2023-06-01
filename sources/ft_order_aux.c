@@ -74,12 +74,14 @@ void	incrust_a_i_b_r(t_sol *solution, t_st *st_a, t_st *st_b)
 {
 	register int	i;
 	register int	j;
+	register int	tam;
 
+	tam = ft_lstsize(st_b);
 	i = 0;
-	while (condition(st_a, st_b, i) && st_b->tam != 0)
+	while (condition(st_a, st_b, i) && tam != 0)
 		i++;
-	j = st_b->tam - i;
-	if (st_b->tam == 0)
+	j = tam - i;
+	if (tam == 0)
 		m_p1(solution, st_b, st_a, PB);
 	else if (i <= j + 1)
 		incrust_top(solution, st_a, st_b, i);

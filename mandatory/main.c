@@ -14,7 +14,7 @@
 
 void	del(void	*to_del)
 {
-	free((char *) to_del);
+	free(to_del);
 	to_del = NULL;
 }
 
@@ -32,8 +32,7 @@ int	main(int argc, char **argv)
 		ft_puterror(ERR_0);
 	core(st_a, solution);
 	ft_lstclear((t_list **) &solution, NULL);
-	free(st_a->stack);
-	free(st_a);
+	ft_lstclear((t_list **) &st_a, NULL);
 	return (ZERO);
 }
 

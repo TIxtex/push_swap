@@ -38,7 +38,7 @@
 #  define ERR_X "Me das asco por probar esto que lo sepas"
 # endif
 
-typedef struct s_list_d t_sol;
+typedef struct s_list_d t_sol, t_st;
 
 typedef struct s_fragment
 {
@@ -47,12 +47,6 @@ typedef struct s_fragment
 	size_t		tam;
 	int			phase;
 }				t_fragment;
-
-typedef struct s_st
-{
-	size_t		tam;
-	int			*stack;
-}				t_st;
 
 /**	FT_CORE	**/
 t_st	*check_args(int argc, char **argv);
@@ -63,7 +57,6 @@ void	copy_stack(t_st *st_source, t_st **st_destiny);
 /*void	ft_putstack(t_st *stack, char s);*/
 int		condition(t_st *stack_a, t_st *stack_b, int i);
 int		isordered(t_st *stack);
-t_st	*reserve_stack(size_t tam);
 void	colocate(t_sol *solution, t_st *stack);
 int		get_next_line(int fd, char **line);
 /**	FT_ORDER.c	**/
@@ -75,7 +68,7 @@ void	incrust_top_pa(t_sol *solution, t_st *stack_a, t_st *stack_b, int num);
 void	m_s(t_sol *solution, t_st *stack, char *add);
 void	m_r(t_sol *solution, t_st *stack, char *add);
 void	m_rr(t_sol *solution, t_st *stack, char *add);
-void	m_p1(t_sol *solution, t_st *stack_1, t_st *stack_2, char *add);
+void	m_p1(t_sol *solution, t_st **stack_1, t_st **stack_2, char *add);
 void	m_up(t_sol *solution, t_st *stack, int num, char *add);
 
 /**		FT_SOLUTION		**/

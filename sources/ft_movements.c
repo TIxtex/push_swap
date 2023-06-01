@@ -17,9 +17,9 @@ void	m_s(t_sol *solution, t_st *stack, char *add)
 	int		aux;
 	t_sol	*new;
 
-	aux = stack->stack[ZERO];
-	stack->stack[ZERO] = stack->stack[1];
-	stack->stack[1] = aux;
+	aux = stack->content;
+	stack->content = stack->next->content;
+	stack->next->content = aux;
 	new = ft_lstnew_d((void *) add);
 	if (NULL == new)
 		ft_puterror(ERR_4);
@@ -29,14 +29,12 @@ void	m_s(t_sol *solution, t_st *stack, char *add)
 void	m_r(t_sol *solution, t_st *stack, char *add)
 {
 	int		aux;
-	size_t	i;
 	t_sol	*new;
 
-	aux = stack->stack[ZERO];
-	i = -1;
-	while (++i < stack->tam - 1)
-		stack->stack[i] = stack->stack[i + 1];
-	stack->stack[stack->tam - 1] = aux;
+	aux = stack->content;
+	while (NULL != stack->next)
+		stack->content = stack->next;
+	stack->content = aux;
 	new = ft_lstnew_d((void *) add);
 	if (NULL == new)
 		ft_puterror(ERR_4);
@@ -46,45 +44,51 @@ void	m_r(t_sol *solution, t_st *stack, char *add)
 void	m_rr(t_sol *solution, t_st *stack, char *add)
 {
 	int	aux;
-	int	i;
+	t_st	*last;
 	t_sol	*new;
 
-	aux = stack->stack[stack->tam - 1];
-	i = stack->tam - 1;
-	while (--i >= ZERO)
-		stack->stack[i + 1] = stack->stack[i];
-	stack->stack[ZERO] = aux;
+	last = ft_lstlast(stack);
+	aux = last->content;
+	while (NULL != last->prev)
+		last->content = last->prev->content;
+	last->content = aux;
 	new = ft_lstnew_d((void *) add);
 	if (NULL == new)
 		ft_puterror(ERR_4);
 	ft_lstadd_back_d(&solution, &new);
 }
 
-void	m_p1(t_sol *solution, t_st *stack_1, t_st *stack_2, char *add)
+void	m_p1(t_sol *solution, t_st **stack_1, t_st **stack_2, char *add)
 {
-	int	i;
 	t_sol	*new;
+	t_st	*aux;
 
-	i = stack_1->tam;
-	while (--i >= ZERO)
-		stack_1->stack[i + 1] = stack_1->stack[i];
-	stack_1->stack[0] = stack_2->stack[ZERO];
-	i = -1;
-	while ((size_t) ++i < stack_2->tam - 1)
-		stack_2->stack[i] = stack_2->stack[i + 1];
+	aux = *stack_2;
+	if (NULL != (*stack_2)->next)
+	{
+		*stack_2 = (*stack_2)->next;
+		(*stack_2)->prev = NULL;
+	}
+	else
+		*stack_2 = NULL;
+	if (NULL != *stack_1)
+		ft_lstadd_front_d(stack_1, aux);
+	else
+		*stack_1 = aux;
 	new = ft_lstnew_d((void *) add);
 	if (NULL == new)
 		ft_puterror(ERR_4);
 	ft_lstadd_back_d(&solution, &new);
-	stack_1->tam++;
-	stack_2->tam--;
 }
 
 void	m_up(t_sol *solution, t_st *stack, int num, char *add)
 {
-	if ((size_t) num > stack->tam / 2)
+	int	tam;
+
+	tam = ft_lstsize(stack);
+	if (num > tam / 2)
 	{
-		while ((size_t) num++ < stack->tam)
+		while (num++ < tam)
 		{
 			if (!ft_strncmp(add, RA, 3))
 				m_rr(solution, stack, RRA);

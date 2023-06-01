@@ -14,32 +14,30 @@
 
 void	have_dup(t_st *stack)
 {
-	register size_t	x;
-	register size_t	y;
+	t_st	*aux;
 
-	x = -1;
-	while (++x < stack->tam)
+	while (NULL != stack->next)
 	{
-		y = x;
-		while (++y < stack->tam)
-			if (stack->stack[x] == stack->stack[y])
+		aux = stack;
+		while (NULL != stack->next)
+		{
+			if (aux->content == stack->next->content)
 				ft_puterror(ERR_6);
+			stack = stack->next;
+		}
+		stack = stack->next;
 	}
 }
 
 int	isordered(t_st *stack)
 {
-	register int	i;
-	register int	flag;
-
-	i = -1;
-	flag = 1;
-	while (++i < (int) stack->tam - 1 && flag)
-		if (stack->stack[i] > stack->stack[i + 1])
-			flag = 0;
-	if (flag)
-		return (1);
-	return (0);
+	while (NULL != stack->next)
+	{
+		if (stack->content > stack->next->content)
+			return (EXIT_FAILURE);
+		stack = stack->next;
+	}
+	return (EXIT_SUCCESS);
 }
 
 int	condition(t_st *st_a, t_st *st_b, int i)
@@ -64,17 +62,24 @@ int	condition(t_st *st_a, t_st *st_b, int i)
 void	colocate(t_sol *solution, t_st *stack)
 {
 	register int	i;
+	register int	tam;
+	t_st			*aux;
 
 	i = ZERO;
-	while (i < (int) stack->tam - 1 && stack->stack[i] > stack->stack[i + 1])
-		i++;
-	if (i != (int) stack->tam - 1)
+	tam = ft_lstsize(stack);
+	aux = stack;
+	while (i < tam - 1 && aux->content > aux->next->content)
 	{
-		if (i < (int) stack->tam / 2)
+		i++;
+		aux = aux->next;
+	}
+	if (i != tam - 1)
+	{
+		if (i < tam / 2)
 			while (i-- > ZERO)
 				m_r(solution, stack, RB);
 		else
-			while (i++ < (int) stack->tam - 1)
+			while (i++ < tam - 1)
 				m_rr(solution, stack, RRB);
 	}
 }
@@ -82,11 +87,17 @@ void	colocate(t_sol *solution, t_st *stack)
 void	copy_stack(t_st *st_source, t_st **st_destiny)
 {
 	register int	i;
+	t_st			*aux;
 
-	i = st_source->tam;
-	(*st_destiny)->tam = (size_t) i;
-	while (i-- > ZERO)
-		(*st_destiny)->stack[i] = st_source->stack[i];
+	while (NULL != st_source)
+	{
+		aux = ft_lstnew_d(st_source->content);
+		if (NULL != aux)
+			ft_lstadd_back_d(st_destiny, &aux);
+		else
+			ft_puterror(ERR_0);
+		st_source = st_source->next;
+	}
 }
 
 /*
